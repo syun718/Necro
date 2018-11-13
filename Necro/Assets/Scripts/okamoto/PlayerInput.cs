@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
 
-    [HideInInspector]
+    //[HideInInspector]
     public float Laxis_x;
-    [HideInInspector]
+    //[HideInInspector]
     public float Laxis_y;
     [HideInInspector]
     public float Raxis_x;
@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour {
     {
         Laxis_x = Input.GetAxis(GamePadName.GameStick_Left + GamePadName.GameStick_X);
         button_A = Input.GetButtonDown(GamePadName.GamePad_A);
-        button_B = Input.GetButtonDown(GamePadName.GamePad_B);
+        button_B = Input.GetButtonDown(GamePadName.GamePad_B) || Input.GetKeyDown("space");
         button_X = Input.GetButton(GamePadName.GamePad_X) || Input.GetKey("x");
         button_Y = Input.GetButtonDown(GamePadName.GamePad_Y) || Input.GetKeyDown("z");
     }

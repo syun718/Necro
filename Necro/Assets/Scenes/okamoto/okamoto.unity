@@ -436,6 +436,7 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
+  m_jobNum: 1
 --- !u!212 &1699338346
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -530,6 +531,7 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
+  m_jobNum: 0
 --- !u!50 &1768808471
 Rigidbody2D:
   serializedVersion: 4
@@ -754,6 +756,7 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
+  m_jobNum: 0
 --- !u!212 &2103643411
 SpriteRenderer:
   m_ObjectHideFlags: 0
