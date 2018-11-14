@@ -436,7 +436,10 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
-  m_jobNum: 1
+  m_jobTime: 0
+  m_DestroyTime: 0
+  m_jobNum: 2
+  m_zombiehit: 0
 --- !u!212 &1699338346
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -505,9 +508,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1768808473}
   - component: {fileID: 1768808472}
-  - component: {fileID: 1768808470}
   - component: {fileID: 1768808471}
   - component: {fileID: 1768808474}
+  - component: {fileID: 1768808470}
   - component: {fileID: 1768808475}
   m_Layer: 0
   m_Name: mayupasu
@@ -531,7 +534,10 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
-  m_jobNum: 0
+  m_jobTime: 0
+  m_DestroyTime: 0
+  m_jobNum: 1
+  m_zombiehit: 0
 --- !u!50 &1768808471
 Rigidbody2D:
   serializedVersion: 4
@@ -634,7 +640,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 1.43}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &1768808475
 MonoBehaviour:
@@ -756,7 +762,10 @@ MonoBehaviour:
   m_mainCamera: {fileID: 155189742}
   m_Speed: 0
   m_flap: 0
-  m_jobNum: 0
+  m_jobTime: 0
+  m_DestroyTime: 0
+  m_jobNum: 3
+  m_zombiehit: 0
 --- !u!212 &2103643411
 SpriteRenderer:
   m_ObjectHideFlags: 0
