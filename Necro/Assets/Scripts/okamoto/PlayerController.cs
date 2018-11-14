@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour {
     public float m_Speed;
     public float m_flap;
     public float m_jobTime;
+    public float m_DestroyTime;
 
     public int m_jobNum;
+    public int m_zombiehit;
 
     bool m_jump = false;
 
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour {
         m_Speed = 5f;
         m_flap = 1500f;
         m_jobTime = 3;
+        m_DestroyTime = 5;
 
         //最も近かったオブジェクトを取得
         nearObj = serchTag(gameObject, "Player");
@@ -67,26 +70,12 @@ public class PlayerController : MonoBehaviour {
         //最も近かったオブジェクトを取得
         nearObj = serchTag(gameObject, "Player");
         m_playerInput.EscapePlayerInput();
+        Zombiehit();
     }
 
     void FixedUpdate()
     {
-        switch (m_jobNum)
-        {
-            case 0:
-                if (!m_jump)
-                {
-                    PlayerMove();
-                    PlayerButton();
-                }
-                break;
-
-            case 1:
-                PlayerMove();
-                ZombieTime();
-                break;
-        }
-
+        Job();
         CameraMove();
     }
 
@@ -100,7 +89,7 @@ public class PlayerController : MonoBehaviour {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
             Vector2 temp = transform.localScale;
-            temp.x = (int)horizontal;
+            temp.x = x;
             transform.localScale = temp;
         }
     }
@@ -117,6 +106,67 @@ public class PlayerController : MonoBehaviour {
         {
             PlayerData.Instance.m_zombieNum = 0;
             m_jobTime = 3;
+        }
+    }
+
+    void Job(){
+        switch (m_jobNum)
+        {
+            case 1:
+                if (!m_jump)
+                {
+                    PlayerMove();
+                    PlayerButton();
+                }
+                break;
+
+            case 2:
+                PlayerMove();
+                ZombieTime();
+                break;
+        }
+    }
+
+    void Zombiehit(){
+        switch (m_zombiehit)
+        {
+            case 1:
+                //普通のゾンビと当たった場合
+                m_DestroyTime -= Time.deltaTime;
+                if (m_DestroyTime <= 0)
+                {
+                    m_jobNum = 1;
+                    m_DestroyTime = 5;
+                    m_zombiehit = 0;
+                }
+
+                if (m_playerInput.button_Y)
+                {
+                    m_jobNum = 1;
+                    m_DestroyTime = 5;
+                    m_zombiehit = 0;
+                    PlayerData.Instance.m_zombieNum = 1;
+                }
+                break;
+
+            case 2:
+                //ゲロゾンビと当たった場合
+                m_DestroyTime -= Time.deltaTime;
+                if (m_DestroyTime <= 0)
+                {
+                    m_jobNum = 1;
+                    m_DestroyTime = 5;
+                    m_zombiehit = 0;
+                }
+
+                if (m_playerInput.button_Y)
+                {
+                    m_jobNum = 1;
+                    m_DestroyTime = 5;
+                    m_zombiehit = 0;
+                    PlayerData.Instance.m_zombieNum = 2;
+                }
+                break;
         }
     }
 
@@ -158,32 +208,22 @@ public class PlayerController : MonoBehaviour {
         {
             m_Speed = 5f;
         }
-
-        if(PlayerData.Instance.m_HP == 0)
-        {
-            if (m_playerInput.button_Y)
-            {
-
-            }
-        }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D hit)
     {
         m_jump = false;
-
-        if (PlayerData.Instance.m_HP == 0)
+        switch (hit.gameObject.tag)
         {
-            switch (other.gameObject.tag)
-            {
-                case TagName.m_zombie:
-                    PlayerData.Instance.m_zombieNum = 1;
-                    break;
+            case TagName.m_zombie:
+                m_jobNum = 0;
+                m_zombiehit = 1;
+                break;
 
-                case TagName.m_dogzombie:
-                    PlayerData.Instance.m_zombieNum = 2;
-                    break;
-            }
+            case TagName.m_dogzombie:
+                m_jobNum = 0;
+                m_zombiehit = 2;
+                break;
         }
     }
 }

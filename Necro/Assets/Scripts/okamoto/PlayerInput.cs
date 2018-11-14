@@ -26,8 +26,8 @@ public class PlayerInput : MonoBehaviour {
     public void EscapePlayerInput()
     {
         Laxis_x = Input.GetAxis(GamePadName.GameStick_Left + GamePadName.GameStick_X);
-        button_A = Input.GetButtonDown(GamePadName.GamePad_A);
-        button_B = Input.GetButtonDown(GamePadName.GamePad_B) || Input.GetKeyDown("space");
+        button_A = Input.GetButtonDown(GamePadName.GamePad_A) || Input.GetKeyDown("space");
+        button_B = Input.GetButtonDown(GamePadName.GamePad_B);
         button_X = Input.GetButton(GamePadName.GamePad_X) || Input.GetKey("x");
         button_Y = Input.GetButtonDown(GamePadName.GamePad_Y) || Input.GetKeyDown("z");
     }
