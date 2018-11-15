@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -22,18 +23,21 @@ public class PlayerController : MonoBehaviour {
 
     bool m_jump = false;
 
+    private UiController uiController;
+
     // Use this for initialization
     void Start () {
         PlayerData.Instance.m_HP = 0;
         m_Speed = 5f;
         m_flap = 1500f;
-        m_jobTime = 3;
+        m_jobTime = 3.0f;
         m_DestroyTime = 5;
 
         //最も近かったオブジェクトを取得
         nearObj = serchTag(gameObject, "Player");
         m_playerInput = GetComponent<PlayerInput>();
         m_rigid2D = GetComponent<Rigidbody2D>();
+        uiController = GameObject.Find("UiController").GetComponent<UiController>();
 
     }
 
@@ -99,13 +103,13 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void ZombieTime()
+    public void ZombieTime()
     {
         m_jobTime -= Time.deltaTime;
         if(m_jobTime <= 0)
         {
             PlayerData.Instance.m_zombieNum = 0;
-            m_jobTime = 3;
+            m_jobTime = 3.0f;
         }
     }
 
@@ -146,6 +150,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
+                    uiController.ChangePlayerIcom(gameObject.tag);
                 }
                 break;
 
@@ -165,7 +170,10 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 2;
+                    uiController.ChangePlayerIcom(gameObject.tag);
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -212,17 +220,20 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D hit)
     {
+        
         m_jump = false;
         switch (hit.gameObject.tag)
         {
             case TagName.m_zombie:
                 m_jobNum = 0;
                 m_zombiehit = 1;
+                //uiController.ChangePlayerIcom(hit.gameObject.tag);
                 break;
 
             case TagName.m_dogzombie:
                 m_jobNum = 0;
                 m_zombiehit = 2;
+                //uiController.ChangePlayerIcom(hit.gameObject.tag);
                 break;
         }
     }
