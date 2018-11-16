@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133, y: 101.5}
+  m_AnchoredPosition: {x: -375, y: 199}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91010509
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58, y: 104.00001}
+  m_AnchoredPosition: {x: -300, y: 201.5}
   m_SizeDelta: {x: 100, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080370100
@@ -557,7 +557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.000004, y: 119}
+  m_AnchoredPosition: {x: -275, y: 216.5}
   m_SizeDelta: {x: 150, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121391859
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   icon_Sprite:
-  - {fileID: 21300000, guid: e93fa2321ee5a694fab3ac7c11c054b0, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
@@ -760,6 +760,7 @@ GameObject:
   - component: {fileID: 1699338344}
   - component: {fileID: 1699338343}
   - component: {fileID: 1699338341}
+  - component: {fileID: 1699338342}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -787,6 +788,17 @@ MonoBehaviour:
   button_B: 0
   button_X: 0
   button_Y: 0
+--- !u!114 &1699338342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699338340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e742048f846e9624abd0fa15322715d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1699338343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -803,7 +815,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.42, y: 1.43}
+    oldSize: {x: 3.6, y: 2.4}
     newSize: {x: 1.42, y: 1.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -831,7 +843,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1699338345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,9 +898,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1249dd1c32ff38d41b73a39a5f4cb0e4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: f591b0ee825bc684482561dfac4f2806, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.1580646, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.42, y: 1.43}
@@ -968,7 +980,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1768808472
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1004,9 +1016,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1249dd1c32ff38d41b73a39a5f4cb0e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 079e3e46099525e499a780305d81a6ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.42, y: 1.43}
@@ -1044,7 +1056,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.42, y: 1.43}
+    oldSize: {x: 3.6, y: 2.4}
     newSize: {x: 1.42, y: 1.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1086,6 +1098,7 @@ GameObject:
   - component: {fileID: 2103643409}
   - component: {fileID: 2103643408}
   - component: {fileID: 2103643406}
+  - component: {fileID: 2103643407}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Dogzombie
@@ -1113,6 +1126,17 @@ MonoBehaviour:
   button_B: 0
   button_X: 0
   button_Y: 0
+--- !u!114 &2103643407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103643405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e742048f846e9624abd0fa15322715d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &2103643408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1129,7 +1153,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.42, y: 1.43}
+    oldSize: {x: 3.6, y: 2.4}
     newSize: {x: 1.42, y: 1.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1157,7 +1181,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2103643410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,9 +1236,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1249dd1c32ff38d41b73a39a5f4cb0e4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: 74b9b3c3ab4d51c4691065c0b2da9d26, type: 3}
+  m_Color: {r: 0.36378765, g: 0, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.42, y: 1.43}

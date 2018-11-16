@@ -7,7 +7,7 @@ public class NormalZombieMove : MonoBehaviour {
     // プレイヤー認識用
     GameObject player;
 
-    private Rigidbody rb;
+    private Rigidbody2D rb;
 
     // 歩くスピード
     float moveSpeed = 3.0f;
@@ -42,7 +42,7 @@ public class NormalZombieMove : MonoBehaviour {
 
     void Start ()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
 
         // プレイヤーオブジェクトを取得
         player = GameObject.Find("Player(Temp)");
@@ -90,7 +90,7 @@ public class NormalZombieMove : MonoBehaviour {
             }
             else if (state == EnemyState.Walk) // プレイヤー未発見or見失った時
             {
-                rb.velocity = new Vector3(transform.localScale.x * moveSpeed, rb.velocity.y, rb.velocity.z);
+                rb.velocity = new Vector2(transform.localScale.x * moveSpeed, rb.velocity.y);
             }
         }
     }
