@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
-                    uiController.ChangePlayerIcom(gameObject.tag);
+                    //uiController.ChangePlayerIcom(gameObject.tag);
                 }
                 break;
 
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 2;
-                    uiController.ChangePlayerIcom(gameObject.tag);
+                    //uiController.ChangePlayerIcom(gameObject.tag);
                 }
                 break;
             default:
