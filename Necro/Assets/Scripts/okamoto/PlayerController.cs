@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Zombiehit(){
+
         switch (m_zombiehit)
         {
             case 1:
