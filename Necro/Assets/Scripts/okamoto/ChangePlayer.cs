@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangePlayer : MonoBehaviour {
 
+    PlayerController m_playerController;
     //操作可能なゲームキャラクター
     public List<GameObject> charaLists;
     //現在どのキャラクターを操作しているか
@@ -11,14 +12,18 @@ public class ChangePlayer : MonoBehaviour {
 
     void Start()
     {
+        m_playerController = GameObject.Find("Zombie").GetComponent<PlayerController>();
         //最初の操作キャラクターを0番目のキャラクターにする為、キャラクターの総数をnowCharaに設定し最初のキャラクターが設定されるようにする
         nowChara = charaLists.Count;
         ChangeCharacter(nowChara);
+        //最も近かったオブジェクトを取得
     }
 
     void Update()
     {
         ChangeCharacter(nowChara);
+        //zcharaLists.Insert(0, m_playerController.nearObj);
+
     }
 
     //　操作キャラクター変更メソッド

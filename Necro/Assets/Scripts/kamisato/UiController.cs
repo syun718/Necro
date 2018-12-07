@@ -24,7 +24,6 @@ public class UiController : MonoBehaviour {
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _zombi = GameObject.Find("Zombie").GetComponent<PlayerController>();
         _dogzombi = GameObject.Find("Zombie2").GetComponent<PlayerController>();
-        time = PlayerData.Instance.jobTime;
     }
 	
 	// Update is called once per frame
@@ -52,8 +51,11 @@ public class UiController : MonoBehaviour {
 
     public void JobTime()
     {
-        _hijackTime.fillAmount -= 1.0f / PlayerData.Instance.jobTime * Time.deltaTime;
-
+        PlayerData.Instance.jobTime -= Time.deltaTime;
+        _hijackTime.fillAmount = PlayerData.Instance.jobTime / PlayerData.Instance.SetJobTime;
+        if(PlayerData.Instance.jobTime <= 0){
+            _hijackTime.fillAmount = 1;
+        }
     }
 }
 
