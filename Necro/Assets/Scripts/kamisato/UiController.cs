@@ -58,20 +58,12 @@ public class UiController : MonoBehaviour {
     public void JobTime()
     {
         PlayerData.Instance.jobTime -= Time.deltaTime;
-<<<<<<< HEAD
-        _hijackTime.fillAmount = PlayerData.Instance.jobTime / PlayerData.Instance.SetJobTime;
-        if(PlayerData.Instance.jobTime <= 0){
-            _hijackTime.fillAmount = 1;
-        }
-=======
         _hijackTime.fillAmount =  PlayerData.Instance.jobTime / PlayerData.Instance.SetJobTime;
         if(_hijackTime.fillAmount <= 0)
         {
             _playerIcon.sprite = icon_Sprite[0];
             _hijackTime.fillAmount = 1;
         }
-
->>>>>>> 7621c4e976982f3da315995af76649487d83b2de
     }
 }
 
