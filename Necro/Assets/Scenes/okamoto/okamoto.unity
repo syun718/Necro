@@ -728,7 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1736213976ca61d46b9f6c4b96b37f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 3
   icon_Sprite:
   - {fileID: 21300000, guid: e93fa2321ee5a694fab3ac7c11c054b0, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
@@ -849,7 +848,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
-  m_jobNum: 1
+  m_jobNum: 2
   m_zombiehit: 0
 --- !u!212 &1699338346
 SpriteRenderer:
