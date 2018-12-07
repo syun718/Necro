@@ -849,7 +849,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
-  m_jobNum: 2
+  m_jobNum: 1
   m_zombiehit: 0
 --- !u!212 &1699338346
 SpriteRenderer:
