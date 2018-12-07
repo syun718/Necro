@@ -9,7 +9,7 @@ public class PlayerData
     public int m_HP;
     public int m_zombieNum;
     public float jobTime;
-    public float JobTimeDeta;
+    public float SetJobTime;
     public int jobNum;
     public int soul;
 
