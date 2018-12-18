@@ -46,11 +46,11 @@ public class UiController : MonoBehaviour {
                 JobTime();
                 Debug.Log("Zombie");
                 break;
-            //case TagName.m_dogzombie:
-            //    _playerIcon.sprite = icon_Sprite[3];
-            //    JobTime();
-            //    Debug.Log("DogZombie");
-            //    break;
+            case TagName.m_gelozombie:
+                _playerIcon.sprite = icon_Sprite[2];
+                JobTime();
+                Debug.Log(TagName.m_gelozombie);
+                break;
         }
 
     }
