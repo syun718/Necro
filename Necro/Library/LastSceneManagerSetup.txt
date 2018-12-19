@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/okamoto/okamoto.unity
-=======
-- path: Assets/Scenes/iwasaki/select.unity
->>>>>>> nakane
   isLoaded: 1
   isActive: 1
