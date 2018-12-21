@@ -406,9 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Laxis_x: 0
-  Laxis_y: 0
-  Raxis_x: 0
-  Raxis_y: 0
   button_RB: 0
   button_A: 0
   button_B: 0
@@ -473,7 +470,9 @@ MonoBehaviour:
   nearObj:
   - {fileID: 0}
   m_mainCamera: {fileID: 155189742}
+  animator: {fileID: 0}
   m_Speed: 0
+  firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
@@ -567,7 +566,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_mainCamera: {fileID: 155189742}
+  animator: {fileID: 0}
   m_Speed: 0
+  firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
@@ -1087,7 +1088,6 @@ MonoBehaviour:
   charaLists:
   - {fileID: 1768808469}
   - {fileID: 1699338340}
-  - {fileID: 2103643405}
   nowChara: 0
 --- !u!4 &1507587944
 Transform:
@@ -1281,9 +1281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Laxis_x: 0
-  Laxis_y: 0
-  Raxis_x: 0
-  Raxis_y: 0
   button_RB: 0
   button_A: 0
   button_B: 0
@@ -1359,7 +1356,9 @@ MonoBehaviour:
   nearObj:
   - {fileID: 0}
   m_mainCamera: {fileID: 155189742}
+  animator: {fileID: 0}
   m_Speed: 0
+  firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
@@ -1436,6 +1435,8 @@ GameObject:
   - component: {fileID: 1768808474}
   - component: {fileID: 1768808470}
   - component: {fileID: 1768808475}
+  - component: {fileID: 1768808476}
+  - component: {fileID: 1768808477}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1461,7 +1462,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_mainCamera: {fileID: 155189742}
+  animator: {fileID: 1768808476}
   m_Speed: 0
+  firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
@@ -1582,14 +1585,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Laxis_x: 0
-  Laxis_y: 0
-  Raxis_x: 0
-  Raxis_y: 0
   button_RB: 0
   button_A: 0
   button_B: 0
   button_X: 0
   button_Y: 0
+--- !u!95 &1768808476
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768808469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06db66915c07ec045b3a007b0170d65b, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1768808477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768808469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27317ec4badf4a4bb534ef2539f440a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1768808476}
+  m_action: 0
 --- !u!1 &2103643405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,9 +1654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Laxis_x: 0
-  Laxis_y: 0
-  Raxis_x: 0
-  Raxis_y: 0
   button_RB: 0
   button_A: 0
   button_B: 0
@@ -1701,7 +1729,9 @@ MonoBehaviour:
   nearObj:
   - {fileID: 0}
   m_mainCamera: {fileID: 155189742}
+  animator: {fileID: 0}
   m_Speed: 0
+  firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
