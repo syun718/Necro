@@ -5,12 +5,13 @@ using UnityEngine;
 public class NormalZombieMove : MonoBehaviour {
 
     // プレイヤー認識用
-    GameObject player;
+    public GameObject player;
 
     private Rigidbody2D rb;
 
     // 歩くスピード
-    float moveSpeed = 3.0f;
+    float moveSpeed = 12.0f;
+    bool ZombieState = false;
 
     private Vector3 pos;
 
@@ -57,12 +58,21 @@ public class NormalZombieMove : MonoBehaviour {
             // 移動範囲の制限
             pos = transform.position;
 
-            pos.x = Mathf.Clamp(pos.x, -8.4f, 8.4f);
+            pos.x = Mathf.Clamp(pos.x, -80.4f, 80.4f);
 
             transform.position = pos;
+            if(this.gameObject.GetComponent<PlayerController>().m_jobTime == 0)
+            {
+                if (new System.Random().Next(100) == 0)
+                {
+                    Debug.Log("向き転換");
+                    moveSpeed *= -1;
+                    transform.Rotate(0, 180, 0);
+                }
+            }
 
             // 画面端で方向転換
-            if (pos.x >= 8.4f || pos.x <= -8.4f)
+            if (pos.x >= 80.4f || pos.x <= -80.4f)
             {
                 Vector3 temp = gameObject.transform.localScale;
 

@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         m_playerInput.EscapePlayerInput();
         Zombiehit();
         m_jobTime = PlayerData.Instance.jobTime;
-        Debug.Log(m_jobTime);
+        //Debug.Log(m_jobTime);
 
     }
 
@@ -157,14 +157,14 @@ public class PlayerController : MonoBehaviour {
         switch (gameObject.tag)
         {
             case TagName.m_player:
-                if (!m_jump)
-                {
+                //if (!m_jump)
+                //{
                     if (m_MoveFlag)
                     {
                         PlayerMove();
                     }
                     PlayerButton();
-                }
+                //}
                 //最も近かったオブジェクトを取得
                 nearObj[0] = serchTag(gameObject, TagName.m_zombie);
                 //最も近かったオブジェクトを取得
@@ -351,6 +351,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 cameraPos= m_mainCamera.transform.position;
         //プレイヤーの位置から右に4移動した位置を画面中央にする
         cameraPos.x = transform.position.x + 1;
+        cameraPos.y = transform.position.y + 2;
         m_mainCamera.transform.position = cameraPos;
         //カメラ表示領域の左下をワールド座標に変換
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
