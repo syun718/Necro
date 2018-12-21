@@ -5,12 +5,13 @@ using UnityEngine;
 public class PowerZombieController : MonoBehaviour {
 
     Rigidbody2D rb;
+    public GameObject Foot;
 
     private int LaterChance_count;
     private int State;
-    private int Direction;
 
     public int Parameter_Speed;
+    public float Parameter_DashSpeed;
 
     // Use this for initialization
     void Start () {
@@ -18,19 +19,19 @@ public class PowerZombieController : MonoBehaviour {
 
         LaterChance_count = 0;
         State = 0;
-        Direction = -1;
 }
 	
 	// Update is called once per frame
 	void Update () {
+        transform.Translate(new Vector2((Parameter_Speed * 0.15f), rb.velocity.y));
         if (LaterChance_count == 0)
         {
             State = 0;
-            transform.Translate(new Vector2(Direction * (Parameter_Speed * 0.0075f), rb.velocity.y));
+            transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y));
             if (new System.Random().Next(100) == 0)
             {
                 Debug.Log("向き転換");
-                Direction = -Direction;
+                transform.Rotate(0, 180, 0);
             }
 
             if (Input.GetKeyDown("a"))  //プレイヤーがパンチ圏内か
@@ -67,12 +68,30 @@ public class PowerZombieController : MonoBehaviour {
 
     void Attack()
     {
+        if (LaterChance_count >= 50)
+        {
+
+        } else if (LaterChance_count >= 20)
+        {
+            //パンチ処理
+        }
         Debug.Log("a");
     }
 
     void Dash()
     {
         Debug.Log("d");
-        transform.Translate(new Vector2(Direction * (Parameter_Speed * 0.0075f), rb.velocity.y));
+        if (LaterChance_count >= 100)
+        {
+
+        }
+        else if (LaterChance_count >= 20)
+        {
+            transform.Translate(new Vector2(Parameter_Speed * Parameter_DashSpeed * 0.0075f, rb.velocity.y));
+        }
+        else if (LaterChance_count >= 0)
+        {
+
+        }
     }
 }
