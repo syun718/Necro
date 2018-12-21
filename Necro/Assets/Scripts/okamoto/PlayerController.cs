@@ -377,6 +377,7 @@ public class PlayerController : MonoBehaviour {
         {
             m_rigid2D.AddForce(Vector2.up * m_flap);
             m_playerAnimations.JumpAnimation();
+            animator.SetTrigger("Jump");
             m_jump = true;
         }
 
