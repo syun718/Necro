@@ -166,7 +166,6 @@ public class PlayerController : MonoBehaviour {
         switch (gameObject.tag)
         {
             case TagName.m_player:
-<<<<<<< HEAD
                 //if (!m_jump)
                 //{
                     if (m_MoveFlag)
@@ -175,16 +174,7 @@ public class PlayerController : MonoBehaviour {
                     }
                     PlayerButton();
                 //}
-=======
-                if (!m_jump)
-                {
-                    PlayerButton();
-                }
-                if (m_MoveFlag)
-                {
-                    PlayerMove();
-                }
->>>>>>> 22d68ac169aa90777ea661a5aa35e10f4a2253d9
+
                 //最も近かったオブジェクトを取得
                 nearObj[0] = serchTag(gameObject, TagName.m_zombie);
                 //最も近かったオブジェクトを取得
