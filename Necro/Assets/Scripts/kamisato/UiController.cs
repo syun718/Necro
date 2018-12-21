@@ -11,7 +11,8 @@ public class UiController : MonoBehaviour {
     private PlayerController _dogzombi;
     private GameObject _dogzombie;
 
-    public float time = 3.0f;
+    float time;
+    private float jobTime;
 
 
     public Sprite[] icon_Sprite = new Sprite[0];
@@ -35,23 +36,34 @@ public class UiController : MonoBehaviour {
     {
         switch (tagName)
         {
+            case TagName.m_player:
+                _playerIcon.sprite = icon_Sprite[0];
+                JobTime();
+                break;
+
             case TagName.m_zombie:
                 _playerIcon.sprite = icon_Sprite[1];
                 JobTime();
                 Debug.Log("Zombie");
                 break;
-            //case TagName.m_dogzombie:
-            //    _playerIcon.sprite = icon_Sprite[3];
-            //    JobTime();
-            //    Debug.Log("DogZombie");
-            //    break;
+            case TagName.m_gelozombie:
+                _playerIcon.sprite = icon_Sprite[2];
+                JobTime();
+                Debug.Log(TagName.m_gelozombie);
+                break;
         }
 
     }
 
     public void JobTime()
     {
-        _hijackTime.fillAmount -= 1.0f / time * Time.deltaTime;
+        PlayerData.Instance.jobTime -= Time.deltaTime;
+        _hijackTime.fillAmount =  PlayerData.Instance.jobTime / PlayerData.Instance.SetJobTime;
+        if(_hijackTime.fillAmount <= 0)
+        {
+            _playerIcon.sprite = icon_Sprite[0];
+            _hijackTime.fillAmount = 1;
+        }
     }
 }
 

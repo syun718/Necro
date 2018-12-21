@@ -14,10 +14,10 @@ public static class GamePadName
 
 public static class TagName
 {
-    public const string m_player = "Man";
+    public const string m_player = "Player";
     public const string m_zombie = "Zombie";
-    public const string m_gelozombie = "Galozombie";
+    public const string m_gelozombie = "GaloZombie";
     public const string m_dogzombie = "Dogzombie";
-    public const string m_powerzombie = "Powerzombie";
-    public const string m_birdzombie = "Birdzombie";
+    public const string m_powerzombie = "PowerZombie";
+    public const string m_birdzombie = "BirdZombie";
 }

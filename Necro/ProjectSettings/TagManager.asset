@@ -7,7 +7,13 @@ TagManager:
   - Zombie
   - Dogzombie
   - ' Man'
+<<<<<<< HEAD
   - Ground
+=======
+  - PowerZombie
+  - BirdZombie
+  - GaloZombie
+>>>>>>> dev
   layers:
   - Default
   - TransparentFX
