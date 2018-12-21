@@ -89,16 +89,6 @@ public class PlayerController : MonoBehaviour {
         Zombiehit();
         m_jobTime = PlayerData.Instance.jobTime;
         Debug.Log(m_jobTime);
-        //最も近かったオブジェクトを取得
-        nearObj[0] = serchTag(gameObject, TagName.m_zombie);
-        //最も近かったオブジェクトを取得
-        nearObj[1] = serchTag(gameObject, TagName.m_gelozombie);
-        //最も近かったオブジェクトを取得
-        nearObj[2] = serchTag(gameObject, TagName.m_powerzombie);
-        //最も近かったオブジェクトを取得
-        nearObj[3] = serchTag(gameObject, TagName.m_dogzombie);
-        //最も近かったオブジェクトを取得
-        nearObj[4] = serchTag(gameObject, TagName.m_birdzombie);
 
     }
 
@@ -175,6 +165,16 @@ public class PlayerController : MonoBehaviour {
                     }
                     PlayerButton();
                 }
+                //最も近かったオブジェクトを取得
+                nearObj[0] = serchTag(gameObject, TagName.m_zombie);
+                //最も近かったオブジェクトを取得
+                nearObj[1] = serchTag(gameObject, TagName.m_gelozombie);
+                //最も近かったオブジェクトを取得
+                nearObj[2] = serchTag(gameObject, TagName.m_powerzombie);
+                //最も近かったオブジェクトを取得
+                nearObj[3] = serchTag(gameObject, TagName.m_dogzombie);
+                //最も近かったオブジェクトを取得
+                nearObj[4] = serchTag(gameObject, TagName.m_birdzombie);
                 break;
 
             case TagName.m_zombie:
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
             Vector2 temp = transform.localScale;
-            temp.x = x;
+            temp.x = (float)horizontal / 10f;
             transform.localScale = temp;
         }
     }

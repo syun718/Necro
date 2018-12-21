@@ -24,7 +24,7 @@ public class UiController : MonoBehaviour {
         _hijackTime = GameObject.Find("JobTime").GetComponent<Image>();
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _zombi = GameObject.Find("Zombie").GetComponent<PlayerController>();
-        _dogzombi = GameObject.Find("Zombie2").GetComponent<PlayerController>();
+        //_dogzombi = GameObject.Find("Zombie2").GetComponent<PlayerController>();
     }
 	
 	// Update is called once per frame

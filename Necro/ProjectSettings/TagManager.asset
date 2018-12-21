@@ -4,16 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ground
   - Zombie
   - Dogzombie
-  - ' Man'
-<<<<<<< HEAD
-  - Ground
-=======
+  - GaloZombie
   - PowerZombie
   - BirdZombie
-  - GaloZombie
->>>>>>> dev
   layers:
   - Default
   - TransparentFX
