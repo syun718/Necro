@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D m_rigid2D;
     PlayerInput m_playerInput;
     ChangePlayer m_changePlayer;
+    PlayerAnimations m_playerAnimations;
+    public Animator animator;
+
     public float m_Speed;
+    public float firstSpeed;
     public float m_flap;
     public float m_jobTime;
     public float m_DestroyTime;
@@ -32,6 +36,8 @@ public class PlayerController : MonoBehaviour {
         PlayerData.Instance.SetJobTime = PlayerData.Instance.jobTime;
         m_playerInput = GetComponent<PlayerInput>();
         m_rigid2D = GetComponent<Rigidbody2D>();
+        m_playerAnimations = GetComponent<PlayerAnimations>();
+        animator = GetComponent<Animator>();
         uiController = GameObject.Find("UiController").GetComponent<UiController>();
         m_changePlayer = GameObject.Find("PlayerManager").GetComponent<ChangePlayer>();
         Status();
@@ -83,8 +89,6 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //最も近かったオブジェクトを取得
-        //nearObj = serchTag(gameObject, "Player");
         m_playerInput.EscapePlayerInput();
         Zombiehit();
         m_jobTime = PlayerData.Instance.jobTime;
@@ -107,7 +111,8 @@ public class PlayerController : MonoBehaviour {
                 PlayerData.Instance.playerWalkSpeed = 5f;
                 PlayerData.Instance.playerDashSpeed = 7f;
                 PlayerData.Instance.playerJumpPower = 1500f;
-                m_Speed = PlayerData.Instance.playerWalkSpeed;
+                firstSpeed = PlayerData.Instance.playerWalkSpeed;
+                m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_DestroyTime = PlayerData.Instance.playerDashSpeed;
                 break;
@@ -117,7 +122,7 @@ public class PlayerController : MonoBehaviour {
                 PlayerData.Instance.zonbieAttack = 1;
                 PlayerData.Instance.zonbieSpeed = 3f;
                 PlayerData.Instance.jobTime = 10.0f;
-                m_Speed = PlayerData.Instance.zonbieSpeed;
+                firstSpeed = PlayerData.Instance.zonbieSpeed;
                 break;
 
             case TagName.m_gelozombie:
@@ -125,7 +130,8 @@ public class PlayerController : MonoBehaviour {
                 PlayerData.Instance.vomitAttack = 3;
                 PlayerData.Instance.vomitSpeed = 4f;
                 PlayerData.Instance.jobTime = 5f;
-                m_Speed = PlayerData.Instance.vomitSpeed;
+                firstSpeed = PlayerData.Instance.vomitSpeed;
+                m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 break;
 
@@ -133,21 +139,24 @@ public class PlayerController : MonoBehaviour {
                 PlayerData.Instance.muscleHp = 10;
                 PlayerData.Instance.muscleAttack = 5;
                 PlayerData.Instance.muscleSpeed = 5f;
-                m_Speed = PlayerData.Instance.muscleSpeed;
+                firstSpeed = PlayerData.Instance.muscleSpeed;
+                m_Speed = firstSpeed;
                 break;
 
             case TagName.m_dogzombie:
                 PlayerData.Instance.dogHp = 5;
                 PlayerData.Instance.dogAttack = 5;
                 PlayerData.Instance.dogSpeed = 10f;
-                m_Speed = PlayerData.Instance.dogSpeed;
+                firstSpeed = PlayerData.Instance.dogSpeed;
+                m_Speed = firstSpeed;
                 break;
 
             case TagName.m_birdzombie:
                 PlayerData.Instance.crowHp = 5;
                 PlayerData.Instance.crowAttack = 5;
                 PlayerData.Instance.crowSpeed = 5f;
-                m_Speed = PlayerData.Instance.crowSpeed;
+                firstSpeed = PlayerData.Instance.crowSpeed;
+                m_Speed = firstSpeed;
                 break;
         }
     }
@@ -157,6 +166,7 @@ public class PlayerController : MonoBehaviour {
         switch (gameObject.tag)
         {
             case TagName.m_player:
+<<<<<<< HEAD
                 //if (!m_jump)
                 //{
                     if (m_MoveFlag)
@@ -165,6 +175,16 @@ public class PlayerController : MonoBehaviour {
                     }
                     PlayerButton();
                 //}
+=======
+                if (!m_jump)
+                {
+                    PlayerButton();
+                }
+                if (m_MoveFlag)
+                {
+                    PlayerMove();
+                }
+>>>>>>> 22d68ac169aa90777ea661a5aa35e10f4a2253d9
                 //最も近かったオブジェクトを取得
                 nearObj[0] = serchTag(gameObject, TagName.m_zombie);
                 //最も近かったオブジェクトを取得
@@ -229,6 +249,7 @@ public class PlayerController : MonoBehaviour {
             Vector2 temp = transform.localScale;
             temp.x = (float)horizontal / 10f;
             transform.localScale = temp;
+            m_playerAnimations.MoveAnimation(horizontal);
         }
     }
 
@@ -367,6 +388,8 @@ public class PlayerController : MonoBehaviour {
         if(m_playerInput.button_A)
         {
             m_rigid2D.AddForce(Vector2.up * m_flap);
+            m_playerAnimations.JumpAnimation();
+            animator.SetTrigger("Jump");
             m_jump = true;
         }
 
@@ -381,7 +404,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            m_Speed = PlayerData.Instance.playerWalkSpeed;
+            m_Speed = firstSpeed;
         }
     }
 

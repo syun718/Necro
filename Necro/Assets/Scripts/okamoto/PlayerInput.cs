@@ -6,12 +6,6 @@ public class PlayerInput : MonoBehaviour {
 
     //[HideInInspector]
     public float Laxis_x;
-    //[HideInInspector]
-    public float Laxis_y;
-    [HideInInspector]
-    public float Raxis_x;
-    [HideInInspector]
-    public float Raxis_y;
     [HideInInspector]
     public bool button_RB;
     [HideInInspector]
