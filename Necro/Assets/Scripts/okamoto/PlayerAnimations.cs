@@ -29,24 +29,20 @@ public class PlayerAnimations : MonoBehaviour {
             if (m_PlayerController.m_Speed <= m_PlayerController.firstSpeed)
             {
                 m_animatorManeger.MoveSpeed = 0.5f;
-                animator.SetFloat("Move", 0.5f);
             }
             else if (m_PlayerController.m_Speed >= m_PlayerController.firstSpeed)
             {
                 m_animatorManeger.MoveSpeed = 1f;
-                animator.SetFloat("Move", 1f);
             }
         }
         else
         {
             m_animatorManeger.MoveSpeed = 0f;
-            animator.SetFloat("Move", 0f);
         }
 
         if (m_action)
         {
             m_PlayerController.m_Speed = 0;
-            animator.SetFloat("Move", 0f);
         }
     }
 

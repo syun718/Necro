@@ -107,10 +107,10 @@ public class PlayerController : MonoBehaviour {
         switch (gameObject.tag)
         {
             case TagName.m_player:
-                PlayerData.Instance.playerHp = 0;
-                PlayerData.Instance.playerWalkSpeed = 5f;
-                PlayerData.Instance.playerDashSpeed = 7f;
-                PlayerData.Instance.playerJumpPower = 1500f;
+                //PlayerData.Instance.playerHp = 0;
+                //PlayerData.Instance.playerWalkSpeed = 5f;
+                //PlayerData.Instance.playerDashSpeed = 7f;
+                //PlayerData.Instance.playerJumpPower = 1500f;
                 firstSpeed = PlayerData.Instance.playerWalkSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
@@ -118,17 +118,17 @@ public class PlayerController : MonoBehaviour {
                 break;
 
             case TagName.m_zombie:
-                PlayerData.Instance.zonbieHp = 10;
-                PlayerData.Instance.zonbieAttack = 1;
-                PlayerData.Instance.zonbieSpeed = 3f;
+                //PlayerData.Instance.zonbieHp = 10;
+                //PlayerData.Instance.zonbieAttack = 1;
+                //PlayerData.Instance.zonbieSpeed = 3f;
                 PlayerData.Instance.jobTime = 10.0f;
                 firstSpeed = PlayerData.Instance.zonbieSpeed;
                 break;
 
             case TagName.m_gelozombie:
-                PlayerData.Instance.vomitHp = 10;
-                PlayerData.Instance.vomitAttack = 3;
-                PlayerData.Instance.vomitSpeed = 4f;
+                //PlayerData.Instance.vomitHp = 10;
+                //PlayerData.Instance.vomitAttack = 3;
+                //PlayerData.Instance.vomitSpeed = 4f;
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
@@ -136,25 +136,25 @@ public class PlayerController : MonoBehaviour {
                 break;
 
             case TagName.m_powerzombie:
-                PlayerData.Instance.muscleHp = 10;
-                PlayerData.Instance.muscleAttack = 5;
-                PlayerData.Instance.muscleSpeed = 5f;
+                //PlayerData.Instance.muscleHp = 10;
+                //PlayerData.Instance.muscleAttack = 5;
+                //PlayerData.Instance.muscleSpeed = 5f;
                 firstSpeed = PlayerData.Instance.muscleSpeed;
                 m_Speed = firstSpeed;
                 break;
 
             case TagName.m_dogzombie:
-                PlayerData.Instance.dogHp = 5;
-                PlayerData.Instance.dogAttack = 5;
-                PlayerData.Instance.dogSpeed = 10f;
+                //PlayerData.Instance.dogHp = 5;
+                //PlayerData.Instance.dogAttack = 5;
+                //PlayerData.Instance.dogSpeed = 10f;
                 firstSpeed = PlayerData.Instance.dogSpeed;
                 m_Speed = firstSpeed;
                 break;
 
             case TagName.m_birdzombie:
-                PlayerData.Instance.crowHp = 5;
-                PlayerData.Instance.crowAttack = 5;
-                PlayerData.Instance.crowSpeed = 5f;
+                //PlayerData.Instance.crowHp = 5;
+                //PlayerData.Instance.crowAttack = 5;
+                //PlayerData.Instance.crowSpeed = 5f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
                 break;
@@ -194,9 +194,9 @@ public class PlayerController : MonoBehaviour {
             case TagName.m_gelozombie:
                 if (!m_jump)
                 {
-                    PlayerMove();
                     ZombieButton();
                 }
+                PlayerMove();
                 ZombieTime();
                 break;
 
@@ -234,12 +234,12 @@ public class PlayerController : MonoBehaviour {
         if ((int)x != 0 || (int)horizontal != 0)
         {
             // 移動する向きを求める
-            m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
+            m_rigid2D.velocity = new Vector2(horizontal * m_Speed, m_rigid2D.velocity.y);
             Vector2 temp = transform.localScale;
             temp.x = (float)horizontal / 10f;
             transform.localScale = temp;
-            m_playerAnimations.MoveAnimation(horizontal);
         }
+        m_playerAnimations.MoveAnimation(horizontal);
     }
 
     public void ZombieTime()
@@ -249,6 +249,7 @@ public class PlayerController : MonoBehaviour {
         {
             PlayerData.Instance.jobTime = PlayerData.Instance.SetJobTime;
             PlayerData.Instance.m_zombieNum = 0;
+            m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
             gameObject.SetActive(false);
         }
     }
@@ -293,6 +294,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
+                    m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
                     m_MoveFlag = true;
                 }
                 break;
@@ -311,6 +313,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
+                    m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
                     m_MoveFlag = true;
                 }
                 break;
@@ -329,6 +332,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
+                    m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
                     m_MoveFlag = true;
                 }
                 break;
@@ -347,6 +351,7 @@ public class PlayerController : MonoBehaviour {
                     m_DestroyTime = 5;
                     m_zombiehit = 0;
                     PlayerData.Instance.m_zombieNum = 1;
+                    m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
                     m_MoveFlag = true;
                 }
                 break;
@@ -376,7 +381,6 @@ public class PlayerController : MonoBehaviour {
         if(m_playerInput.button_A)
         {
             m_rigid2D.AddForce(Vector2.up * m_flap);
-            m_playerAnimations.JumpAnimation();
             animator.SetTrigger("Jump");
             m_jump = true;
         }
