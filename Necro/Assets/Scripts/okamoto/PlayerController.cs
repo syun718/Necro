@@ -230,12 +230,12 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove()
     {
         // 右・左
-        float x = Input.GetAxisRaw("Horizontal");
+        //float x = Input.GetAxisRaw("Horizontal");
         float horizontal = m_playerInput.Laxis_x;
-        if ((int)x != 0 || (int)horizontal != 0)
+        if ((int)horizontal != 0)
         {
             // 移動する向きを求める
-            m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
+            m_rigid2D.velocity = new Vector2(horizontal * m_Speed, m_rigid2D.velocity.y);
             Vector2 temp = transform.localScale;
             temp.x = (float)horizontal / 10f;
             transform.localScale = temp;
