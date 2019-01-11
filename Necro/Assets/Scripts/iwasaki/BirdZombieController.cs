@@ -5,7 +5,6 @@ using UnityEngine;
 public class BirdZombieController : MonoBehaviour
 {
     Rigidbody2D rb;
-    public GameObject Foot;
 
     private int LaterChance_count;
     private int State;
@@ -25,20 +24,23 @@ public class BirdZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector2((Parameter_Speed * 0.15f), rb.velocity.y));
+        transform.Translate(new Vector2(-Parameter_Speed * 0.05f, rb.velocity.y));
         if (LaterChance_count == 0)
         {
             State = 0;
-            transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y));
-            if (new System.Random().Next(100) == 0)
+
+            if ((new System.Random().Next(200) == 0) || (transform.position.x >= 7 || transform.position.x <= -7))
             {
                 Debug.Log("向き転換");
                 transform.Rotate(0, 180, 0);
             }
 
-            if (Input.GetKeyDown("a"))  //プレイヤーがパンチ圏内か
+            if (Input.GetKeyDown("a"))  //プレイヤーが攻撃圏内か
             {
-                Debug.Log("パンチ開始");
+                Debug.Log("攻撃開始");
+
+                
+
                 LaterChance_count += 60;
                 State = 1;
             }
@@ -77,7 +79,7 @@ public class BirdZombieController : MonoBehaviour
         }
         else if (LaterChance_count >= 20)
         {
-            //パンチ処理
+            //攻撃処理
         }
         Debug.Log("a");
     }
