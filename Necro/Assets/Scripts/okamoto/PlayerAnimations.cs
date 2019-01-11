@@ -9,8 +9,6 @@ public class PlayerAnimations : MonoBehaviour {
     AnimatorManager m_animatorManeger;
     public Animator animator;
 
-    public bool m_action;
-
     // Use this for initialization
     void Start () {
         m_PlayerInput = GetComponent<PlayerInput>();
@@ -22,10 +20,9 @@ public class PlayerAnimations : MonoBehaviour {
     //走っている時のアニメーション
     public void MoveAnimation(float horizontal)
     {
-
-        if (m_PlayerInput.Laxis_x >= 0.1f || m_PlayerInput.Laxis_x <= -0.1f)
+        float x = Input.GetAxisRaw("Horizontal");
+        if (m_PlayerInput.Laxis_x != 0 || x != 0)
         {
-            Debug.Log("あ");
             if (m_PlayerController.m_Speed <= m_PlayerController.firstSpeed)
             {
                 m_animatorManeger.MoveSpeed = 0.5f;
@@ -39,22 +36,12 @@ public class PlayerAnimations : MonoBehaviour {
         {
             m_animatorManeger.MoveSpeed = 0f;
         }
-
-        if (m_action)
-        {
-            m_PlayerController.m_Speed = 0;
-        }
     }
 
     //突き飛ばされた時のアニメーション
     public void JumpAnimation()
     {
-        m_action = true;
-        //アニメーション再生後の処理
-        StartCoroutine(ActionAnimation(() =>
-        {
-            m_action = false;
-        }));
+        m_animatorManeger.SetJump();
     }
 
     IEnumerator ActionAnimation(System.Action callback)

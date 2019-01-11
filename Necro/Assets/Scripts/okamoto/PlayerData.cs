@@ -11,6 +11,7 @@ public class PlayerData
     public float SetJobTime;
     public int jobNum;
     public int soul;
+    public int playerStock;
 
     public int playerHp = 0;
     public float playerWalkSpeed = 5f;

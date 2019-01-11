@@ -10,6 +10,7 @@ public class UiController : MonoBehaviour {
     private PlayerController _zombi;
     private PlayerController _dogzombi;
     private GameObject _dogzombie;
+    public GameObject m_Player;
 
     float time;
     private float jobTime;
