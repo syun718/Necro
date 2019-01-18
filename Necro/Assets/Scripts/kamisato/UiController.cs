@@ -37,20 +37,20 @@ public class UiController : MonoBehaviour {
     {
         switch (tagName)
         {
-            case TagName.m_player:
+            case TagName.player:
                 _playerIcon.sprite = icon_Sprite[0];
                 JobTime();
                 break;
 
-            case TagName.m_zombie:
+            case TagName.zombie:
                 _playerIcon.sprite = icon_Sprite[1];
                 JobTime();
                 Debug.Log("Zombie");
                 break;
-            case TagName.m_gelozombie:
+            case TagName.gelozombie:
                 _playerIcon.sprite = icon_Sprite[2];
                 JobTime();
-                Debug.Log(TagName.m_gelozombie);
+                Debug.Log(TagName.gelozombie);
                 break;
         }
 

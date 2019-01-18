@@ -9,6 +9,8 @@ public class PlayerAnimations : MonoBehaviour {
     AnimatorManager m_animatorManeger;
     public Animator animator;
 
+    bool m_action;
+
     // Use this for initialization
     void Start () {
         m_PlayerInput = GetComponent<PlayerInput>();
@@ -38,10 +40,22 @@ public class PlayerAnimations : MonoBehaviour {
         }
     }
 
-    //突き飛ばされた時のアニメーション
+    //ジャンプアニメーション
     public void JumpAnimation()
     {
         m_animatorManeger.SetJump();
+    }
+
+    //ゲロアニメーション
+    public void GeroAnimation()
+    {
+        m_action = true;
+        m_animatorManeger.SetGero_Gero();
+        //アニメーション再生後の処理
+        StartCoroutine(ActionAnimation(() =>
+        {
+
+        }));
     }
 
     IEnumerator ActionAnimation(System.Action callback)
