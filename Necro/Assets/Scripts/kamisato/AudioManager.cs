@@ -18,11 +18,13 @@ public class AudioManager : MonoBehaviour {
     public AudioClip Attack1;
     public AudioClip Attack2;
     public AudioClip GeroAttack;
-    //public AudioClip[] SE = new AudioClip[0];
 
     
     private AudioSource audioSource;
     private AudioSource _geroZombie;
+    private AudioSource _powerZombie;
+    private AudioSource _crowZombie;
+    private AudioSource _dogzombie;
 
     public int BGMFlg = 1;
 
@@ -40,7 +42,10 @@ public class AudioManager : MonoBehaviour {
         }
 
         audioSource = gameObject.GetComponent<AudioSource>();
-        _geroZombie = GameObject.Find("GeroZoｍbie").GetComponent<AudioSource>();
+        _geroZombie = GameObject.FindGameObjectWithTag("Gero").GetComponent<AudioSource>();
+        _powerZombie = GameObject.FindGameObjectWithTag("GeroZoｍbie").GetComponent<AudioSource>();
+        _crowZombie = GameObject.FindGameObjectWithTag("GeroZoｍbie").GetComponent<AudioSource>();
+        _dogzombie = GameObject.FindGameObjectWithTag("GeroZoｍbie").GetComponent<AudioSource>();
     }
 
         public void StartBGM1()
