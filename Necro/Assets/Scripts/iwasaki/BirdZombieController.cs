@@ -32,20 +32,11 @@ public class BirdZombieController : MonoBehaviour
             if ((new System.Random().Next(200) == 0) || (transform.position.x >= 7 || transform.position.x <= -7))
             {
                 Debug.Log("向き転換");
-                transform.Rotate(0, 180, 0);
-            }
-
-            if (Input.GetKeyDown("a"))  //プレイヤーが攻撃圏内か
-            {
-                Debug.Log("攻撃開始");
-
-                
-
-                LaterChance_count += 60;
                 State = 1;
             }
             else if (Input.GetKeyDown("d")) //プレイヤーがダッシュ圏内か
             {
+                rb.AddForce(Vector2.up * 40.0f);
                 if (new System.Random().Next(50) == 0)
                 {
                     Debug.Log("ダッシュ開始");
