@@ -24,6 +24,9 @@ public class BirdZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //transform.Translate(new Vector2(Parameter_Speed * 0.05f, rb.velocity.y));
+        rb.AddForce(Vector2.right * 3.4f);
+
         if (Input.GetKeyDown("a")) //プレイヤーがダッシュ圏内か
         {
             Debug.Log("ジャンプ");
