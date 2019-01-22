@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     //最も近いオブジェクト
-    public GameObject[] nearObj;
+    public GameObject nearObj;
     public GameObject m_mainCamera;
     public GameObject m_Player;
     public GameObject m_gero;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D m_rigid2D;
     Vector2 m_vector;
     PlayerInput m_playerInput;
-    AcidAttack m_acidAttack;
+   
     ChangePlayer m_changePlayer;
     PlayerAnimations m_playerAnimations;
     public Animator animator;
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour {
 
     private UiController uiController;
 
-    // Use this for initialization
     void Start () {
         Status();
         playerStock = PlayerData.Instance.playerStock;
@@ -67,6 +66,7 @@ public class PlayerController : MonoBehaviour {
             case TagName.gelozombie:
                 uiController.ChangePlayerIcom(gameObject.tag);
                 break;
+
             default:
                 break;
         }
@@ -76,9 +76,12 @@ public class PlayerController : MonoBehaviour {
 
     private GameObject serchTag(GameObject nowObj, string tagName)
     {
-        float tmpDis = 0;           //距離用一時変数
-        float nearDis = 2;          //最も近いオブジェクトの距離
-        GameObject targetObj = null; //オブジェクト
+        //距離用一時変数
+        float tmpDis = 0;
+        //最も近いオブジェクトの距離
+        float nearDis = 10;
+        //オブジェクト
+        GameObject targetObj = null; 
 
         //タグ指定されたオブジェクトを配列で取得する
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
@@ -100,7 +103,6 @@ public class PlayerController : MonoBehaviour {
         return targetObj;
     }
 
-    // Update is called once per frame
     void Update () {
         m_playerInput.EscapePlayerInput();
         m_jobTime = PlayerData.Instance.jobTime;
@@ -120,9 +122,9 @@ public class PlayerController : MonoBehaviour {
 
     void Status()
     {
-        switch (gameObject.tag)
+        switch (LayerMask.LayerToName(gameObject.layer))
         {
-            case TagName.player:
+            case LayerName.player:
                 PlayerData.Instance.playerStock = 5;
                 firstSpeed = PlayerData.Instance.playerWalkSpeed;
                 m_Speed = firstSpeed;
@@ -130,36 +132,34 @@ public class PlayerController : MonoBehaviour {
                 m_DestroyTime = PlayerData.Instance.playerDashSpeed;
                 break;
 
-            case TagName.zombie:
-                gameObject.GetComponent<NormalZombieMove>().enabled = false;
-                PlayerData.Instance.jobTime = 10.0f;
-                firstSpeed = PlayerData.Instance.zonbieSpeed;
-                break;
-
-            case TagName.gelozombie:
-                gameObject.GetComponent<NormalZombieMove>().enabled = false;
+            case LayerName.gelozombie:
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 break;
 
-            case TagName.powerzombie:
-                PlayerData.Instance.jobTime = 5f;
+            case LayerName.powerzombie:
+                PlayerData.Instance.jobTime = 15f;
                 firstSpeed = PlayerData.Instance.muscleSpeed;
+                m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
                 break;
 
-            case TagName.dogzombie:
-                PlayerData.Instance.jobTime = 5f;
+            case LayerName.dogzombie:
+                PlayerData.Instance.jobTime = 10f;
                 firstSpeed = PlayerData.Instance.dogSpeed;
+                m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
                 break;
 
-            case TagName.birdzombie:
+            case LayerName.birdzombie:
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
+                break;
+
+            default:
                 break;
         }
     }
@@ -172,45 +172,16 @@ public class PlayerController : MonoBehaviour {
                 PlayerButton();
                 PlayerMove();
                 //最も近かったオブジェクトを取得
-                nearObj[0] = serchTag(gameObject, TagName.zombie);
-                //最も近かったオブジェクトを取得
-                nearObj[1] = serchTag(gameObject, TagName.gelozombie);
-                //最も近かったオブジェクトを取得
-                nearObj[2] = serchTag(gameObject, TagName.powerzombie);
-                //最も近かったオブジェクトを取得
-                nearObj[3] = serchTag(gameObject, TagName.dogzombie);
-                //最も近かったオブジェクトを取得
-                nearObj[4] = serchTag(gameObject, TagName.birdzombie);
+                nearObj = serchTag(gameObject, TagName.zombie);
+                m_changePlayer.charaLists[1] = nearObj;
                 break;
 
             case TagName.zombie:
                 PlayerMove();
-                ZombieTime();
-                break;
-
-            case TagName.gelozombie:
-                ZombieButton();
-                PlayerMove();
-                ZombieTime();
-                break;
-
-            case TagName.powerzombie:
-                PlayerMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
-            case TagName.dogzombie:
-                PlayerMove();
-                ZombieButton();
-                ZombieTime();
-                break;
-
-            case TagName.birdzombie:
-                PlayerMove();
-                ZombieButton();
-                ZombieTime();
-                break;
             default:
                 break;
         }
@@ -252,35 +223,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// m_zombiehit = 1が普通のゾンビ、2がゲロゾンビ、3がパワーゾンビ、４が犬ゾンビ、5が鳥ゾンビ
-    /// </summary>
-    void ZombiehitSet(){
-
-        //普通のゾンビと当たった場合
-        m_DestroyTime -= Time.deltaTime;
-        if (m_DestroyTime <= 0)
-        {
-            m_DestroyTime = 5;
-            MainSpriteRenderer.enabled = true;
-            m_Soul.SetActive(false);
-            PlayerData.Instance.playerStock -= 1;
-            m_Zombiehit = false;
-        }
-
-        if (m_playerInput.button_Y)
-        {
-            m_DestroyTime = 5;
-            MainSpriteRenderer.enabled = true;
-            PlayerData.Instance.m_zombieNum = 1;
-            m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
-            PlayerData.Instance.playerStock -= 1;
-            m_Player.SetActive(false);
-            m_Soul.SetActive(false);
-            m_Zombiehit = false;
-        }
-    }
-
     void PlayerPosition()
     {
         var playerPos = transform.position;
@@ -318,7 +260,7 @@ public class PlayerController : MonoBehaviour {
 
         }
 
-        if (m_playerInput.button_X)
+        if(m_playerInput.button_X)
         {
             m_Speed = PlayerData.Instance.playerDashSpeed;
         }
@@ -326,19 +268,52 @@ public class PlayerController : MonoBehaviour {
         {
             m_Speed = firstSpeed;
         }
+
+        if (m_Zombiehit)
+        {
+            ZombiehitSet();
+        }
+    }
+
+    void ZombiehitSet()
+    {
+
+        //普通のゾンビと当たった場合
+        m_DestroyTime -= Time.deltaTime;
+        if (m_DestroyTime <= 0)
+        {
+            m_DestroyTime = 5;
+            MainSpriteRenderer.enabled = true;
+            m_Soul.SetActive(false);
+            PlayerData.Instance.playerStock -= 1;
+            m_Zombiehit = false;
+        }
+
+        if (m_playerInput.button_Y)
+        {
+            m_DestroyTime = 5;
+            MainSpriteRenderer.enabled = true;
+            PlayerData.Instance.m_zombieNum = 1;
+            m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
+            PlayerData.Instance.playerStock -= 1;
+            m_Player.SetActive(false);
+            m_Soul.SetActive(false);
+            m_Zombiehit = false;
+        }
     }
 
     void ZombieButton()
     {
-        switch(gameObject.tag)
+        switch(LayerMask.LayerToName(gameObject.layer))
         {
-            case TagName.gelozombie:
+            case LayerName.gelozombie:
                 if(m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
                     m_playerAnimations.JumpAnimation();
                     m_jump = true;
                 }
+
                 if (m_playerInput.button_B)
                 {
                     // ゲロの複製
@@ -350,19 +325,46 @@ public class PlayerController : MonoBehaviour {
                 }
                 break;
 
-            case TagName.powerzombie:
-                if(m_playerInput.button_B)
+            case LayerName.powerzombie:
+                if (m_playerInput.button_A && !m_jump)
+                {
+                    m_rigid2D.AddForce(Vector2.up * m_flap);
+                    m_playerAnimations.JumpAnimation();
+                    m_jump = true;
+                }
+                if (m_playerInput.button_B)
                 {
                     
                 }
                 break;
 
-            case TagName.dogzombie:
+            case LayerName.dogzombie:
+                if (m_playerInput.button_A && !m_jump)
+                {
+                    m_rigid2D.AddForce(Vector2.up * m_flap);
+                    m_playerAnimations.JumpAnimation();
+                    m_jump = true;
+                }
+                if (m_playerInput.button_B)
+                {
 
+                }
                 break;
 
-            case TagName.birdzombie:
+            case LayerName.birdzombie:
+                if (m_playerInput.button_A && !m_jump)
+                {
+                    m_rigid2D.AddForce(Vector2.up * m_flap);
+                    m_playerAnimations.JumpAnimation();
+                    m_jump = true;
+                }
+                if (m_playerInput.button_B)
+                {
 
+                }
+                break;
+
+            default:
                 break;
         }
     }
@@ -385,40 +387,10 @@ public class PlayerController : MonoBehaviour {
                 m_Move = false;
                 m_Soul.SetActive(true);
                 MainSpriteRenderer.enabled = false;
-                m_changePlayer.charaLists[1] = nearObj[0];
                 m_Zombiehit = true;
                 break;
 
-            case TagName.gelozombie:
-                m_Move = false;
-                m_Soul.SetActive(true);
-                MainSpriteRenderer.enabled = false;
-                m_changePlayer.charaLists[1] = nearObj[1];
-                m_Zombiehit = true;
-                break;
-
-            case TagName.powerzombie:
-                m_Move = false;
-                m_Soul.SetActive(true);
-                MainSpriteRenderer.enabled = false;
-                m_changePlayer.charaLists[1] = nearObj[2];
-                m_Zombiehit = true;
-                break;
-
-            case TagName.dogzombie:
-                m_Move = false;
-                m_Soul.SetActive(true);
-                MainSpriteRenderer.enabled = false;
-                m_changePlayer.charaLists[1] = nearObj[3];
-                m_Zombiehit = true;
-                break;
-
-            case TagName.birdzombie:
-                m_Move = false;
-                m_Soul.SetActive(true);
-                MainSpriteRenderer.enabled = false;
-                m_changePlayer.charaLists[1] = nearObj[4];
-                m_Zombiehit = true;
+            default:
                 break;
         }
     }
