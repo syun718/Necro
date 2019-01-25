@@ -11,20 +11,27 @@ public class AnimatorManager
     {
         PlayerMove,
         Jump,
+        Gero,
+        Attack,
 
     }
 
     static readonly Dictionary<ParamName, int> m_paramHashDete = new Dictionary<ParamName, int>()
     {
         { ParamName.PlayerMove,  Animator.StringToHash("PlayerMove") },
-        { ParamName.Jump,       Animator.StringToHash("Jump")},
+        { ParamName.Jump,        Animator.StringToHash("Jump")},
+        { ParamName.Gero,      Animator.StringToHash("Gero")},
+        { ParamName.Attack,      Animator.StringToHash("Attack")},
+
     };
 
     public enum StateName
     {
         Idle,
         Move,
-        Jump
+        Jump,
+        gero_gero,
+        Attack,
     }
 
     static readonly Dictionary<StateName, int> m_stateHashDate = new Dictionary<StateName, int>()
@@ -32,7 +39,8 @@ public class AnimatorManager
         { StateName.Idle,       Animator.StringToHash("Base Layer.Idle") },
         { StateName.Move,       Animator.StringToHash("Base Layer.Move") },
         { StateName.Jump,       Animator.StringToHash("Bass Leyer.Jump")},
-       
+        { StateName.gero_gero,     Animator.StringToHash("Bass Leyer.gero_gero")},
+
     };
 
     List<Animator> m_animatorList;
@@ -95,6 +103,21 @@ public class AnimatorManager
         }
     }
 
+    public void SetGero_Gero()
+    {
+        if (IsActive)
+        {
+            ActiveComponent.SetTrigger(m_paramHashDete[ParamName.Gero]);
+        }
+    }
+
+    public void SetAtteck()
+    {
+        if (IsActive)
+        {
+            ActiveComponent.SetTrigger(m_paramHashDete[ParamName.Attack]);
+        }
+    }
 
 
 }
