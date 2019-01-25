@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour {
     bool m_Zombiehit = false;
 
     private UiController uiController;
+    private bool m_MoveFlag;
+    private float x;
 
     void Start () {
         Status();
@@ -76,23 +78,20 @@ public class PlayerController : MonoBehaviour {
 
     private GameObject serchTag(GameObject nowObj, string tagName)
     {
-<<<<<<< HEAD
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 2;          //最も近いオブジェクトの距離
         GameObject targetObj = null; //オブジェクト
 
    
         //タグ指定されたオブジェクトを配列で取得する
-=======
         //距離用一時変数
-        float tmpDis = 0;
+        //float tmpDis = 0;
         //最も近いオブジェクトの距離
-        float nearDis = 10;
+        //float nearDis = 10;
         //オブジェクト
-        GameObject targetObj = null; 
+        //GameObject targetObj = null; 
 
         //タグ指定されたオブジェクトを配列で取得する
->>>>>>> okamoto
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
         
@@ -115,11 +114,8 @@ public class PlayerController : MonoBehaviour {
     void Update () {
         m_playerInput.EscapePlayerInput();
         m_jobTime = PlayerData.Instance.jobTime;
-<<<<<<< HEAD
         //Debug.Log(m_jobTime);
-=======
         Debug.Log(playerStock);
->>>>>>> okamoto
 
         if(m_Zombiehit)
         {
@@ -181,8 +177,7 @@ public class PlayerController : MonoBehaviour {
     {
         switch (gameObject.tag)
         {
-<<<<<<< HEAD
-            case TagName.m_player:
+            case TagName.player:
                 //if (!m_jump)
                 //{
                     if (m_MoveFlag)
@@ -192,6 +187,7 @@ public class PlayerController : MonoBehaviour {
                     PlayerButton();
                 //}
 
+                /*
                 //最も近かったオブジェクトを取得
                 nearObj[0] = serchTag(gameObject, TagName.m_zombie);
                 //最も近かったオブジェクトを取得
@@ -202,28 +198,28 @@ public class PlayerController : MonoBehaviour {
                 nearObj[3] = serchTag(gameObject, TagName.m_dogzombie);
                 //最も近かったオブジェクトを取得
                 nearObj[4] = serchTag(gameObject, TagName.m_birdzombie);
+                */
                 break;
 
-            case TagName.m_zombie:
+            case TagName.zombie:
                 PlayerMove();
                 ZombieTime();
                 break;
-
-            case TagName.m_gelozombie:
+            
+            /*
+            case TagName.gelozombie:
                 if (!m_jump)
                 {
                     PlayerMove();
                     ZombieButton();
                 }
                 ZombieTime();
-=======
             case TagName.player:
                 PlayerButton();
                 PlayerMove();
                 //最も近かったオブジェクトを取得
                 nearObj = serchTag(gameObject, TagName.zombie);
                 m_changePlayer.charaLists[1] = nearObj;
->>>>>>> okamoto
                 break;
 
             case TagName.zombie:
@@ -231,9 +227,9 @@ public class PlayerController : MonoBehaviour {
                 ZombieButton();
                 ZombieTime();
                 break;
-<<<<<<< HEAD
+            */
 
-            case TagName.m_dogzombie:
+            case TagName.dogzombie:
                 if (!m_jump)
                 {
                     PlayerMove();
@@ -242,18 +238,18 @@ public class PlayerController : MonoBehaviour {
                 ZombieTime();
                 break;
 
-            case TagName.m_birdzombie:
+            /*
+            case TagName.birdzombie:
                 if (!m_jump)
                 {
                     PlayerMove();
                     ZombieButton();
                 }
                 ZombieTime();
-=======
 
             default:
->>>>>>> okamoto
                 break;
+                */
         }
     }
 
