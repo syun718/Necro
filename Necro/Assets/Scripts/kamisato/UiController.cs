@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UiController : MonoBehaviour {
-    
+
+    private Image _life;
     private Image _playerIcon;
     private Image _hijackTime;
     private PlayerController _zombi;
@@ -16,14 +17,15 @@ public class UiController : MonoBehaviour {
 
 
     public Sprite[] icon_Sprite = new Sprite[0];
-    
+    public Sprite[] life_Sprite = new Sprite[0];
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         _playerIcon = GameObject.Find("Icon").GetComponent<Image>();
         _hijackTime = GameObject.Find("JobTime").GetComponent<Image>();
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        _zombi = GameObject.Find("Zombie").GetComponent<PlayerController>();
+        //_zombi = GameObject.Find("Zombie").GetComponent<PlayerController>();
         //_dogzombi = GameObject.Find("Zombie2").GetComponent<PlayerController>();
     }
 	
@@ -52,6 +54,11 @@ public class UiController : MonoBehaviour {
                 Debug.Log(TagName.m_gelozombie);
                 break;
         }
+
+    }
+
+    public void Life()
+    {
 
     }
 
