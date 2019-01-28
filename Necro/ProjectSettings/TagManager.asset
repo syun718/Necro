@@ -20,12 +20,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Zombie
+  - GaloZombie
+  - Dogzombie
+  - PowerZombie
+  - BirdZombie
   - 
   - 
   - 

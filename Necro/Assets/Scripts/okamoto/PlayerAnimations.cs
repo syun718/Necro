@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour {
     AnimatorManager m_animatorManeger;
     public Animator animator;
 
+
     public bool m_action;
 
     // Use this for initialization
@@ -22,42 +23,39 @@ public class PlayerAnimations : MonoBehaviour {
     //走っている時のアニメーション
     public void MoveAnimation(float horizontal)
     {
-
-        if (m_PlayerInput.Laxis_x >= 0.1f || m_PlayerInput.Laxis_x <= -0.1f)
+        float x = Input.GetAxisRaw("Horizontal");
+        if (m_PlayerInput.Laxis_x != 0 || x != 0)
         {
-            Debug.Log("あ");
             if (m_PlayerController.m_Speed <= m_PlayerController.firstSpeed)
             {
                 m_animatorManeger.MoveSpeed = 0.5f;
-                animator.SetFloat("Move", 0.5f);
             }
             else if (m_PlayerController.m_Speed >= m_PlayerController.firstSpeed)
             {
                 m_animatorManeger.MoveSpeed = 1f;
-                animator.SetFloat("Move", 1f);
             }
         }
         else
         {
             m_animatorManeger.MoveSpeed = 0f;
-            animator.SetFloat("Move", 0f);
-        }
-
-        if (m_action)
-        {
-            m_PlayerController.m_Speed = 0;
-            animator.SetFloat("Move", 0f);
         }
     }
 
-    //突き飛ばされた時のアニメーション
+    //ジャンプアニメーション
     public void JumpAnimation()
     {
+        m_animatorManeger.SetJump();
+    }
+
+    //ゲロアニメーション
+    public void GeroAnimation()
+    {
         m_action = true;
+        m_animatorManeger.SetGero_Gero();
         //アニメーション再生後の処理
         StartCoroutine(ActionAnimation(() =>
         {
-            m_action = false;
+
         }));
     }
 
