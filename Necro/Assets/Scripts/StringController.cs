@@ -16,4 +16,6 @@ public static class TagName
 {
     public const string player = "Player";
     public const string zombie = "Zombie";
+    public const string z_attack = "Z_Attack";
+    public const string p_attack = "P_Attack";
 }

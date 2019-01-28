@@ -487,6 +487,7 @@ public class PlayerController : MonoBehaviour {
         {
             Zombiehit(hit);
         }
+
     }
 
     void Zombiehit(Collision2D hit)
@@ -498,6 +499,10 @@ public class PlayerController : MonoBehaviour {
                 m_Soul.SetActive(true);
                 MainSpriteRenderer.enabled = false;
                 m_Zombiehit = true;
+                break;
+
+            case TagName.z_attack:
+                Debug.Log("attatta");
                 break;
 
             default:

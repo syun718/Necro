@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 549395391}
   - component: {fileID: 549395390}
   - component: {fileID: 549395397}
+  - component: {fileID: 549395398}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -473,7 +474,6 @@ MonoBehaviour:
   m_Player: {fileID: 0}
   m_gero: {fileID: 0}
   m_Soul: {fileID: 0}
-  icon_Sprite: []
   muzzle: {fileID: 0}
   animator: {fileID: 0}
   m_Speed: 0
@@ -481,6 +481,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 0
 --- !u!212 &549395395
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -533,13 +534,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 549395389}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.74, y: 0.97, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &549395397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +555,24 @@ MonoBehaviour:
   Foot: {fileID: 0}
   Parameter_Speed: 1
   Parameter_DashSpeed: 1
+--- !u!114 &549395398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 549395389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc934cb905149854f983f33f1f086d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GeroZomie_Gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070,
+    type: 2}
+  Player: {fileID: 0}
+  Type: 0
+  Parameter_Speed: 1
+  Attack1_Range: 0
+  Attack2_Range: 0
 --- !u!1 &645983507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1186,6 @@ MonoBehaviour:
   m_Player: {fileID: 0}
   m_gero: {fileID: 0}
   m_Soul: {fileID: 0}
-  icon_Sprite: []
   muzzle: {fileID: 0}
   animator: {fileID: 1768808476}
   m_Speed: 0
@@ -1175,6 +1193,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 0
 --- !u!50 &1768808471
 Rigidbody2D:
   serializedVersion: 4
@@ -1248,7 +1267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1768808469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.01754, y: -0.23, z: 0}
+  m_LocalPosition: {x: -7.94, y: -0.29, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

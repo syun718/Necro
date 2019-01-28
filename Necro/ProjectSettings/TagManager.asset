@@ -10,6 +10,9 @@ TagManager:
   - GaloZombie
   - PowerZombie
   - BirdZombie
+  - Undefined
+  - Z_Attack
+  - P_Attack
   layers:
   - Default
   - TransparentFX
