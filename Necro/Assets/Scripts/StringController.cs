@@ -16,18 +16,4 @@ public static class TagName
 {
     public const string player = "Player";
     public const string zombie = "Zombie";
-    public const string gelozombie = "GaloZombie";
-    public const string dogzombie = "Dogzombie";
-    public const string powerzombie = "PowerZombie";
-    public const string birdzombie = "BirdZombie";
-}
-
-public static class LayerName
-{
-    public const string player = "Player";
-    public const string zombie = "Zombie";
-    public const string gelozombie = "GaloZombie";
-    public const string dogzombie = "Dogzombie";
-    public const string powerzombie = "PowerZombie";
-    public const string birdzombie = "BirdZombie";
 }

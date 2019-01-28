@@ -15,9 +15,7 @@ public class UiController : MonoBehaviour {
     float time;
     private float jobTime;
 
-
     public Sprite[] icon_Sprite = new Sprite[0];
-    
 
 	// Use this for initialization
 	void Start () {
@@ -42,16 +40,16 @@ public class UiController : MonoBehaviour {
                 JobTime();
                 break;
 
-            case TagName.gelozombie:
-                _playerIcon.sprite = icon_Sprite[1];
-                JobTime();
-                Debug.Log("Zombie");
-                break;
-            case TagName.dogzombie:
-                _playerIcon.sprite = icon_Sprite[2];
-                JobTime();
-                Debug.Log(TagName.gelozombie);
-                break;
+            //case TagName.gelozombie:
+            //    _playerIcon.sprite = icon_Sprite[1];
+            //    JobTime();
+            //    Debug.Log("Zombie");
+            //    break;
+            //case TagName.dogzombie:
+                //_playerIcon.sprite = icon_Sprite[2];
+                //JobTime();
+                //Debug.Log(TagName.gelozombie);
+                //break;
         }
 
     }
