@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour {
 
     SpriteRenderer MainSpriteRenderer;
 
-    public Sprite[] icon_Sprite = new Sprite[0];
-
     public Transform muzzle;
 
     Camera cam;
@@ -44,6 +42,17 @@ public class PlayerController : MonoBehaviour {
     private bool m_MoveFlag;
     private float x;
 
+    public enum PlayerJob
+    {
+        Player,
+        GeroZomie,
+        Dogzombie,
+        PowerZombie,
+        BirdZombie
+    }
+
+    public PlayerJob m_job;
+
     void Start () {
         Status();
         playerStock = PlayerData.Instance.playerStock;
@@ -65,9 +74,9 @@ public class PlayerController : MonoBehaviour {
                 uiController.ChangePlayerIcom(gameObject.tag);
                 break;
 
-            case TagName.gelozombie:
-                uiController.ChangePlayerIcom(gameObject.tag);
-                break;
+            //case TagName.gelozombie:
+                //uiController.ChangePlayerIcom(gameObject.tag);
+                //break;
 
             default:
                 break;
@@ -131,9 +140,9 @@ public class PlayerController : MonoBehaviour {
 
     void Status()
     {
-        switch (LayerMask.LayerToName(gameObject.layer))
+        switch (m_job)
         {
-            case LayerName.player:
+            case PlayerJob.Player:
                 PlayerData.Instance.playerStock = 5;
                 firstSpeed = PlayerData.Instance.playerWalkSpeed;
                 m_Speed = firstSpeed;
@@ -141,28 +150,28 @@ public class PlayerController : MonoBehaviour {
                 m_DestroyTime = PlayerData.Instance.playerDashSpeed;
                 break;
 
-            case LayerName.gelozombie:
+            case PlayerJob.GeroZomie:
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 break;
 
-            case LayerName.powerzombie:
+            case PlayerJob.PowerZombie:
                 PlayerData.Instance.jobTime = 15f;
                 firstSpeed = PlayerData.Instance.muscleSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
                 break;
 
-            case LayerName.dogzombie:
-                PlayerData.Instance.jobTime = 10f;
+            case PlayerJob.Dogzombie:
+                PlayerData.Instance.jobTime = 15f;
                 firstSpeed = PlayerData.Instance.dogSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
                 break;
 
-            case LayerName.birdzombie:
+            case PlayerJob.BirdZombie:
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
@@ -263,7 +272,7 @@ public class PlayerController : MonoBehaviour {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(horizontal * m_Speed, m_rigid2D.velocity.y);
             Vector2 temp = transform.localScale;
-            temp.x = (float)x / 10f;
+            temp.x = (float)x / 6.0f;
             transform.localScale = temp;
         }
         m_playerAnimations.MoveAnimation(horizontal);
@@ -344,36 +353,31 @@ public class PlayerController : MonoBehaviour {
 
     void ZombiehitSet()
     {
-
         //普通のゾンビと当たった場合
         m_DestroyTime -= Time.deltaTime;
         if (m_DestroyTime <= 0)
         {
-            m_DestroyTime = 5;
-            MainSpriteRenderer.enabled = true;
-            m_Soul.SetActive(false);
+            m_DestroyTime = 10;
             PlayerData.Instance.playerStock -= 1;
             m_Zombiehit = false;
         }
 
         if (m_playerInput.button_Y)
         {
-            m_DestroyTime = 5;
-            MainSpriteRenderer.enabled = true;
+            m_DestroyTime = 10;
             PlayerData.Instance.m_zombieNum = 1;
             m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
             PlayerData.Instance.playerStock -= 1;
             m_Player.SetActive(false);
-            m_Soul.SetActive(false);
             m_Zombiehit = false;
         }
     }
 
     void ZombieButton()
     {
-        switch(LayerMask.LayerToName(gameObject.layer))
+        switch(m_job)
         {
-            case LayerName.gelozombie:
+            case PlayerJob.GeroZomie:
                 if(m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
@@ -390,9 +394,19 @@ public class PlayerController : MonoBehaviour {
                     bullets.transform.position = muzzle.position;
                     m_playerAnimations.GeroAnimation();
                 }
+
+                if(m_playerInput.button_X)
+                {
+
+                }
+
+                if (m_playerInput.button_Y)
+                {
+
+                }
                 break;
 
-            case LayerName.powerzombie:
+            case PlayerJob.PowerZombie:
                 if (m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
@@ -403,9 +417,19 @@ public class PlayerController : MonoBehaviour {
                 {
                     
                 }
+
+                if (m_playerInput.button_X)
+                {
+
+                }
+
+                if (m_playerInput.button_Y)
+                {
+
+                }
                 break;
 
-            case LayerName.dogzombie:
+            case PlayerJob.Dogzombie:
                 if (m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
@@ -416,9 +440,19 @@ public class PlayerController : MonoBehaviour {
                 {
 
                 }
+
+                if (m_playerInput.button_X)
+                {
+
+                }
+
+                if (m_playerInput.button_Y)
+                {
+
+                }
                 break;
 
-            case LayerName.birdzombie:
+            case PlayerJob.BirdZombie:
                 if (m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
@@ -426,6 +460,16 @@ public class PlayerController : MonoBehaviour {
                     m_jump = true;
                 }
                 if (m_playerInput.button_B)
+                {
+
+                }
+
+                if (m_playerInput.button_X)
+                {
+
+                }
+
+                if (m_playerInput.button_Y)
                 {
 
                 }
@@ -438,7 +482,6 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D hit)
     {
-        
         m_jump = false;
         if (gameObject.tag == TagName.player)
         {

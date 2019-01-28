@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 22992866}
   - component: {fileID: 22992865}
   - component: {fileID: 22992864}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 75620386}
   - component: {fileID: 75620385}
   - component: {fileID: 75620384}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Zombie (1)
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -284,7 +284,6 @@ MonoBehaviour:
   m_Player: {fileID: 1768808469}
   m_gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070, type: 2}
   m_Soul: {fileID: 0}
-  icon_Sprite: []
   muzzle: {fileID: 1778760794}
   animator: {fileID: 75620385}
   m_Speed: 0
@@ -292,6 +291,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 2
 --- !u!114 &75620387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +435,7 @@ Transform:
   m_GameObject: {fileID: 75620383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.53, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 1819363652}
   - {fileID: 1778760794}
@@ -474,7 +474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -375, y: 199}
+  m_AnchoredPosition: {x: -375, y: 171}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91010509
@@ -596,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453174107}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 549395400}
   - component: {fileID: 549395399}
   - component: {fileID: 549395401}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -871,7 +871,7 @@ Transform:
   m_GameObject: {fileID: 549395389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.7, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 1659317941}
   - {fileID: 1195268684}
@@ -908,7 +908,6 @@ MonoBehaviour:
   m_Player: {fileID: 1768808469}
   m_gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070, type: 2}
   m_Soul: {fileID: 0}
-  icon_Sprite: []
   muzzle: {fileID: 1195268684}
   animator: {fileID: 549395400}
   m_Speed: 0
@@ -916,6 +915,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 1
 --- !u!114 &549395399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 201.5}
+  m_AnchoredPosition: {x: -300, y: 173.49998}
   m_SizeDelta: {x: 100, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080370100
@@ -1343,7 +1343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275, y: 216.5}
+  m_AnchoredPosition: {x: -275, y: 188.49998}
   m_SizeDelta: {x: 150, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121391859
@@ -1388,7 +1388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195268684}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1439825087}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Soul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1604,7 @@ GameObject:
   - component: {fileID: 1659317941}
   - component: {fileID: 1659317943}
   - component: {fileID: 1659317942}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1732,15 +1732,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4013488752973886, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4013488752973886, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4013488752973886, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1614279116200522, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
       propertyPath: m_IsActive
@@ -1748,7 +1748,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614279116200522, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd65301747c93d4fa013f16788e5788, type: 2}
@@ -1770,7 +1770,7 @@ GameObject:
   - component: {fileID: 1768808477}
   - component: {fileID: 1768808478}
   - component: {fileID: 1768808479}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1793,7 +1793,6 @@ MonoBehaviour:
   m_Player: {fileID: 1768808469}
   m_gero: {fileID: 0}
   m_Soul: {fileID: 1439825086}
-  icon_Sprite: []
   muzzle: {fileID: 0}
   animator: {fileID: 1768808476}
   m_Speed: 0
@@ -1801,6 +1800,7 @@ MonoBehaviour:
   m_flap: 1500
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 0
 --- !u!50 &1768808471
 Rigidbody2D:
   serializedVersion: 4
@@ -1969,7 +1969,7 @@ RectTransform:
   m_GameObject: {fileID: 1768808469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 1439825087}
   m_Father: {fileID: 0}
@@ -1988,7 +1988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1778760794}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2025,7 +2025,7 @@ GameObject:
   - component: {fileID: 1810005429}
   - component: {fileID: 1810005428}
   - component: {fileID: 1810005427}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Zombie (2)
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -2078,7 +2078,6 @@ MonoBehaviour:
   m_Player: {fileID: 1768808469}
   m_gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070, type: 2}
   m_Soul: {fileID: 0}
-  icon_Sprite: []
   muzzle: {fileID: 453174107}
   animator: {fileID: 1810005428}
   m_Speed: 0
@@ -2086,6 +2085,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_job: 3
 --- !u!114 &1810005430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2229,7 +2229,7 @@ Transform:
   m_GameObject: {fileID: 1810005426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.6, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 22992866}
   - {fileID: 453174107}
@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 1819363652}
   - component: {fileID: 1819363651}
   - component: {fileID: 1819363650}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
