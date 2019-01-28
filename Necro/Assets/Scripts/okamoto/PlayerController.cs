@@ -236,8 +236,8 @@ public class PlayerController : MonoBehaviour {
                 ZombieButton();
                 ZombieTime();
                 break;
-            */
-
+            
+            
             case TagName.dogzombie:
                 if (!m_jump)
                 {
@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour {
                 ZombieTime();
                 break;
 
-            /*
+            
             case TagName.birdzombie:
                 if (!m_jump)
                 {
