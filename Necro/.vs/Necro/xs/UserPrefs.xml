@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/okamoto/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/okamoto/PlayerController.cs" Line="204" Column="18" />
+      <File FileName="Assets/Scripts/okamoto/PlayerController.cs" Line="48" Column="14" />
       <File FileName="Assets/Scripts/okamoto/ChangePlayer.cs" Line="42" Column="75" />
       <File FileName="Assets/Scripts/okamoto/PlayerInput.cs" Line="25" Column="80" />
       <File FileName="Assets/Scripts/okamoto/PlayerData.cs" Line="14" Column="28" />
-      <File FileName="Assets/Scripts/kamisato/UiController.cs" Line="52" Column="25" />
+      <File FileName="Assets/Scripts/kamisato/UiController.cs" Line="35" Column="6" />
       <File FileName="Assets/Scripts/StringController.cs" Line="18" Column="43" />
       <File FileName="Assets/Scripts/okamoto/AnimatorManager.cs" Line="118" Column="72" />
       <File FileName="Assets/Scripts/okamoto/PlayerAnimations.cs" Line="50" Column="32" />
