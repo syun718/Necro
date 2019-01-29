@@ -23,6 +23,7 @@ public class ZombieController : MonoBehaviour
     private int State;  //0で待機
                         //1で攻撃１
                         //2で攻撃２
+                        //3で乗っ取られてる
 
     public int Parameter_Speed; //待機中の移動スピード
     public float Attack1_Range; //攻撃射程距離
@@ -61,10 +62,14 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (State == 0)
+        {
+            transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
+        }
         if (LaterChance_count == 0)
         {
             State = 0;
-            GameObject Player = GameObject.FindGameObjectWithTag("Player");
+            //GameObject Player = GameObject.FindGameObjectWithTag("Player");
 
             transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
 
