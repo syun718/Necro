@@ -67,11 +67,12 @@ public class PlayerController : MonoBehaviour {
         uiController = GameObject.Find("UiController").GetComponent<UiController>();
         m_changePlayer = GameObject.Find("PlayerManager").GetComponent<ChangePlayer>();
         PlayerData.Instance.SetJobTime = PlayerData.Instance.jobTime;
+        string JobName = m_job.ToString();
 
-        switch (gameObject.tag)
+        switch (m_job)
         {
-            case TagName.zombie:
-                uiController.ChangePlayerIcom(gameObject.tag);
+            case PlayerJob.GeroZomie:
+                uiController.ChangePlayerIcom(JobName);
                 break;
 
             //case TagName.gelozombie:
@@ -155,6 +156,7 @@ public class PlayerController : MonoBehaviour {
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
+                tag = TagName.player;
                 break;
 
             case PlayerJob.PowerZombie:
@@ -162,6 +164,7 @@ public class PlayerController : MonoBehaviour {
                 firstSpeed = PlayerData.Instance.muscleSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
+                tag = TagName.player;
                 break;
 
             case PlayerJob.Dogzombie:
@@ -169,12 +172,14 @@ public class PlayerController : MonoBehaviour {
                 firstSpeed = PlayerData.Instance.dogSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
+                tag = TagName.player;
                 break;
 
             case PlayerJob.BirdZombie:
                 PlayerData.Instance.jobTime = 5f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
+                tag = TagName.player;
                 break;
 
             default:

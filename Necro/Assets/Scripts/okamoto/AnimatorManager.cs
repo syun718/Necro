@@ -13,7 +13,8 @@ public class AnimatorManager
         Jump,
         Gero,
         Attack,
-
+        Fly,
+        Tackle,
     }
 
     static readonly Dictionary<ParamName, int> m_paramHashDete = new Dictionary<ParamName, int>()
@@ -22,6 +23,8 @@ public class AnimatorManager
         { ParamName.Jump,        Animator.StringToHash("Jump")},
         { ParamName.Gero,      Animator.StringToHash("Gero")},
         { ParamName.Attack,      Animator.StringToHash("Attack")},
+        { ParamName.Fly,      Animator.StringToHash("Fly")},
+        { ParamName.Tackle,      Animator.StringToHash("Tackle")},
 
     };
 
@@ -119,5 +122,19 @@ public class AnimatorManager
         }
     }
 
+    public void SetFly()
+    {
+        if (IsActive)
+        {
+            ActiveComponent.SetTrigger(m_paramHashDete[ParamName.Fly]);
+        }
+    }
 
+    public void SetTackle()
+    {
+        if (IsActive)
+        {
+            ActiveComponent.SetTrigger(m_paramHashDete[ParamName.Tackle]);
+        }
+    }
 }
