@@ -60,7 +60,5 @@ public class AcidAttack : MonoBehaviour {
         }
         Destroy(gameObject);
         //Destroy(acid);
-
     }
-	
 }
