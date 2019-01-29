@@ -10,9 +10,13 @@ TagManager:
   - GaloZombie
   - PowerZombie
   - BirdZombie
+<<<<<<< HEAD
   - Undefined
   - Z_Attack
   - P_Attack
+=======
+  - Gero
+>>>>>>> newkamisato
   layers:
   - Default
   - TransparentFX
@@ -47,6 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bg
+    uniqueID: 1275865961
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -9,7 +9,8 @@ public class PlayerAnimations : MonoBehaviour {
     AnimatorManager m_animatorManeger;
     public Animator animator;
 
-    bool m_action;
+
+    public bool m_action;
 
     // Use this for initialization
     void Start () {
