@@ -548,6 +548,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("attatta");
                 break;
 
+            case TagName.search_area:
+                Debug.Log("attatta222");
+                break;
+
             default:
                 break;
         }

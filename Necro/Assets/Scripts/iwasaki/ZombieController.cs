@@ -26,6 +26,7 @@ public class ZombieController : MonoBehaviour
                         //3で乗っ取られてる
 
     public int Parameter_Speed; //待機中の移動スピード
+    public bool Range_Flag;
     public float Attack1_Range; //攻撃射程距離
     public float Attack2_Range;
     //public float Parameter_DashSpeed;
@@ -37,6 +38,7 @@ public class ZombieController : MonoBehaviour
 
         LaterChance_count = 0;
         State = 0;
+        Range_Flag = false;
 
         switch (Type)
         {
@@ -69,11 +71,8 @@ public class ZombieController : MonoBehaviour
         if (LaterChance_count == 0)
         {
             State = 0;
-            //GameObject Player = GameObject.FindGameObjectWithTag("Player");
 
-            transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
-
-            if (Input.GetKeyDown("a"))  //プレイヤーが攻撃１の射程圏内か
+            if (Range_Flag == true && Random.Range(0,20) == 0)  //プレイヤーが攻撃１の射程圏内か
             {
                 Debug.Log("攻撃１開始");
 
@@ -147,6 +146,15 @@ public class ZombieController : MonoBehaviour
                 break;
 
             case ZombieType.DogZombie:
+                if (LaterChance_count == 60)
+                {
+
+                }
+                else if (LaterChance_count == 50)
+                {
+                    //rb.AddForce(Vector2.left * 250f);
+                    transform.Translate(new Vector2((Parameter_Speed * 5), rb.velocity.y)); //移動
+                }
                 break;
 
             case ZombieType.PowerZombie:
