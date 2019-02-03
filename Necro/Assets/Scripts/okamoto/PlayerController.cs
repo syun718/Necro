@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         switch (m_job)
         {
             case PlayerJob.GeroZomie:
-                uiController.ChangePlayerIcom(JobName);
+                uiController.ChangePlayerIcom();
                 break;
 
             //case TagName.gelozombie:
@@ -538,7 +538,7 @@ public class PlayerController : MonoBehaviour
         {
             case TagName.zombie:
                 m_Move = false;
-                m_Soul.SetActive(true);
+                //m_Soul.SetActive(true);
                 MainSpriteRenderer.enabled = false;
                 m_Zombiehit = true;
                 break;
