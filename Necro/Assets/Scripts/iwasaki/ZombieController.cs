@@ -25,11 +25,10 @@ public class ZombieController : MonoBehaviour
                         //2で攻撃２
                         //3で乗っ取られてる
 
-    public int Parameter_Speed; //待機中の移動スピード
+    public float Parameter_Speed; //待機中の移動スピード
     public bool Range_Flag;
-    public float Attack1_Range; //攻撃射程距離
-    public float Attack2_Range;
-    //public float Parameter_DashSpeed;
+    public float Parameter_DashSpeed;   //一部キャラのダッシュスピード
+    public int Rand_Percent;    //攻撃する確率
 
     void Start()
     {
@@ -43,20 +42,12 @@ public class ZombieController : MonoBehaviour
         switch (Type)
         {
             case ZombieType.GeroZombie:
-                Attack1_Range = 1;
-                Attack2_Range = 1;
                 break;
             case ZombieType.DogZombie:
-                Attack1_Range = 1;
-                Attack2_Range = 1;
                 break;
             case ZombieType.PowerZombie:
-                Attack1_Range = 1;
-                Attack2_Range = 1;
                 break;
             case ZombieType.BirdZombie:
-                Attack1_Range = 1;
-                Attack2_Range = 1;
                 break;
         }   //後隙時間の設定
     }
@@ -72,7 +63,7 @@ public class ZombieController : MonoBehaviour
         {
             State = 0;
 
-            if (Range_Flag == true && Random.Range(0,20) == 0)  //プレイヤーが攻撃１の射程圏内か
+            if (Range_Flag == true && Random.Range(0,Rand_Percent) == 0)  //プレイヤーが攻撃１の射程圏内か
             {
                 Debug.Log("攻撃１開始");
 
@@ -81,13 +72,13 @@ public class ZombieController : MonoBehaviour
                         LaterChance_count += 60;
                         break;
                     case ZombieType.DogZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 180;
                         break;
                     case ZombieType.PowerZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 120;
                         break;
                     case ZombieType.BirdZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 300;
                         break;
                 }   //後隙時間の設定
                 State = 1;
@@ -146,21 +137,52 @@ public class ZombieController : MonoBehaviour
                 break;
 
             case ZombieType.DogZombie:
-                if (LaterChance_count == 60)
+                if (LaterChance_count == 180)
                 {
-
+                    Parameter_Speed = 0;
                 }
-                else if (LaterChance_count == 50)
+                else if (LaterChance_count == 1)
                 {
-                    //rb.AddForce(Vector2.left * 250f);
-                    transform.Translate(new Vector2((Parameter_Speed * 5), rb.velocity.y)); //移動
+                    Parameter_Speed = 1;
+                }
+                else if (LaterChance_count <= 171)
+                {
+                    if (Parameter_Speed <= Parameter_DashSpeed * 1.5f)
+                    {
+                        Parameter_Speed += 0.05f;
+                    }
+                    transform.Translate(new Vector2(Parameter_Speed * 0.05f, rb.velocity.y)); //移動
                 }
                 break;
 
             case ZombieType.PowerZombie:
+                if (LaterChance_count == 120)
+                {
+                    Parameter_Speed = 0;
+                }
+                else if (LaterChance_count <= 11)
+                {
+                    Parameter_Speed = 1;
+                }
+                else if (LaterChance_count <= 111)
+                {
+                    if (Parameter_Speed <= Parameter_DashSpeed)
+                    {
+                        Parameter_Speed += 0.1f;
+                    }
+                    transform.Translate(new Vector2(Parameter_Speed * 0.05f, rb.velocity.y)); //移動
+                }
                 break;
 
             case ZombieType.BirdZombie:
+                if (LaterChance_count == 291)
+                {
+                    rb.AddForce(Vector2.up * 400.0f);
+                }else if (LaterChance_count == 180)
+                {
+                    rb.AddForce(Vector2.left * 250.0f);
+                    rb.AddForce(Vector2.down * 100.0f);
+                }
                 break;
 
         }   //攻撃１のタイムテーブル設定

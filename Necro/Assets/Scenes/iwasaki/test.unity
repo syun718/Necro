@@ -329,7 +329,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 547680956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9, y: -0.23, z: 0}
+  m_LocalPosition: {x: -7.71, y: -1.18, z: 0}
   m_LocalScale: {x: 3, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -452,7 +452,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -572,11 +572,11 @@ MonoBehaviour:
   GeroZomie_Gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070,
     type: 2}
   Player: {fileID: 0}
-  Type: 1
+  Type: 0
   Parameter_Speed: 1
   Range_Flag: 0
-  Attack1_Range: 0
-  Attack2_Range: 0
+  Parameter_DashSpeed: 3
+  Rand_Percent: 30
 --- !u!1 &645983507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1149,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 35.998196, y: -0.03813076}
+  m_Offset: {x: 35.998196, y: 16.236382}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1160,7 +1160,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 83.99511, y: 23.492636}
+  m_Size: {x: 83.99511, y: 56.041664}
   m_EdgeRadius: 0
 --- !u!212 &1595919965
 SpriteRenderer:
@@ -1388,7 +1388,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1768808469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.94, y: -0.29, z: 0}
+  m_LocalPosition: {x: -7.94, y: 0.52, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
