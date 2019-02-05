@@ -67,7 +67,7 @@ public class SoundManager : MonoBehaviour {
         sourceSE_Array = new AudioSource[SE_CHANNEL];
     }
 
-    // AudioSourceを取得する
+    // AudioSourceを取得
     AudioSource GetAudioSource(SoundType type, int channel = -1)
     {
         if(soundObject == null)
@@ -130,7 +130,7 @@ public class SoundManager : MonoBehaviour {
         poolSE.Add(Key, new Data(Key, resName));
     }
 
-    // BGMの再生
+    // BGM再生
     public static bool PlayBGM(string Key)
     {
         return GetInstance()._PlayBGM(Key);
@@ -158,7 +158,7 @@ public class SoundManager : MonoBehaviour {
         return true;
     }
 
-    // BGMの停止
+    // BGM停止
     public static bool StopBGM()
     {
         return GetInstance()._StopBGM();
@@ -170,7 +170,7 @@ public class SoundManager : MonoBehaviour {
         return true;
     }
 
-    // SEの再生
+    // SE再生
     public static bool PlaySE(string Key, int channel = -1)
     {
         return GetInstance()._PlaySE(Key, channel);

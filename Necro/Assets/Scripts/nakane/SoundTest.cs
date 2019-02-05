@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SoundTest : MonoBehaviour {
 
+    // Resources内のSoundsフォルダに音楽ファイルが入ってないと機能しないので入れておく
+
     void Awake()
     {
-        // サウンドのロード
+        // サウンドのロード(各スクリプトでする必要あり)
         // SoundManager.LoadBGM/LoadSE("キー名", "ファイル名");
+
         SoundManager.LoadBGM("Stage1", "Stage1");
         SoundManager.LoadBGM("Stage2", "Stage2");
         SoundManager.LoadBGM("Stage3", "Stage3");
