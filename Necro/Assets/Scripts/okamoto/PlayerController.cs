@@ -73,11 +73,7 @@ public class PlayerController : MonoBehaviour
         switch (m_job)
         {
             case PlayerJob.GeroZomie:
-<<<<<<< HEAD
-                uiController.ChangePlayerIcom(JobName);
-=======
                 uiController.ChangePlayerIcom();
->>>>>>> newkamisato
                 break;
 
             //case TagName.gelozombie:
@@ -96,11 +92,6 @@ public class PlayerController : MonoBehaviour
         m_playerInput.EscapePlayerInput();
         m_jobTime = PlayerData.Instance.jobTime;
         Debug.Log(playerStock);
-
-        if (m_Zombiehit)
-        {
-            ZombiehitSet();
-        }
     }
 
     void FixedUpdate()
@@ -167,29 +158,17 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.GeroZomie:
-<<<<<<< HEAD
-=======
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
             case PlayerJob.PowerZombie:
->>>>>>> newkamisato
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
-<<<<<<< HEAD
-            case PlayerJob.PowerZombie:
-                PlayerMove();
-                ZombieButton();
-                ZombieTime();
-                break;
-
-=======
->>>>>>> newkamisato
             case PlayerJob.Dogzombie:
                 PlayerMove();
                 ZombieButton();
@@ -295,33 +274,6 @@ public class PlayerController : MonoBehaviour
         {
             m_Speed = firstSpeed;
         }
-
-        if (m_Zombiehit)
-        {
-            ZombiehitSet();
-        }
-    }
-
-    void ZombiehitSet()
-    {
-        //普通のゾンビと当たった場合
-        m_DestroyTime -= Time.deltaTime;
-        if (m_DestroyTime <= 0)
-        {
-            m_DestroyTime = 10;
-            PlayerData.Instance.playerStock -= 1;
-            m_Zombiehit = false;
-        }
-
-        if (m_playerInput.button_Y)
-        {
-            m_DestroyTime = 10;
-            PlayerData.Instance.m_zombieNum = 1;
-            m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
-            PlayerData.Instance.playerStock -= 1;
-            m_Player.SetActive(false);
-            m_Zombiehit = false;
-        }
     }
 
     void ZombieButton()
@@ -338,16 +290,6 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_B)
                 {
-                    // ゲロの複製
-                    GameObject bullets = Instantiate(m_gero) as GameObject;
-
-                    // ゲロの位置を調整
-                    bullets.transform.position = muzzle.position;
-                    m_playerAnimations.GeroAnimation();
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -356,9 +298,19 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    // ゲロの複製
+                    GameObject bullets = Instantiate(m_gero) as GameObject;
+
+                    // ゲロの位置を調整
+                    bullets.transform.position = muzzle.position;
+                    m_playerAnimations.GeroAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -371,11 +323,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -384,9 +331,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    m_playerAnimations.TackleAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -399,11 +351,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -412,9 +359,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
-                if (m_playerInput.button_Y)
+                if (m_playerInput.button_X)
                 {
 
+                }
+
+                if (m_playerInput.button_Y)
+                {
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -427,11 +379,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -440,9 +387,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    m_playerAnimations.FlyAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
