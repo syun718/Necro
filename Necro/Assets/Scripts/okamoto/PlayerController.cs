@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    //最も近いオブジェクト
-    public GameObject nearObj;
     public GameObject m_mainCamera;
     public GameObject m_Player;
     public GameObject m_gero;
@@ -89,35 +87,6 @@ public class PlayerController : MonoBehaviour
         m_jobTime = PlayerData.Instance.jobTime;
     }
 
-    private GameObject serchTag(GameObject nowObj, string tagName)
-    {
-        //距離用一時変数
-        float tmpDis = 0;
-        //最も近いオブジェクトの距離
-        float nearDis = 10;
-        //オブジェクト
-        GameObject targetObj = null;
-
-        //タグ指定されたオブジェクトを配列で取得する
-        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
-        {
-
-            //自身と取得したオブジェクトの距離を取得
-            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
-
-            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
-            //一時変数に距離を格納
-            if (nearDis > tmpDis)
-            {
-                nearDis = tmpDis;
-                //nearObjName = obs.name;
-                targetObj = obs;
-            }
-
-        }
-        return targetObj;
-    }
-
     void Update()
     {
         m_playerInput.EscapePlayerInput();
@@ -191,89 +160,30 @@ public class PlayerController : MonoBehaviour
             case PlayerJob.Player:
                 PlayerButton();
                 PlayerMove();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                } else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.GeroZomie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.PowerZombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.Dogzombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.BirdZombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             default:
