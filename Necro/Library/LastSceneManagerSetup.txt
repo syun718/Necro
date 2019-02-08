@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/kamisato/kamisato.unity
-=======
-- path: Assets/Scenes/okamoto/okamoto.unity
->>>>>>> 873444716f1d44bc45874e6cc99ce4f800b8a9e1
   isLoaded: 1
   isActive: 1
