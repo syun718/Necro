@@ -530,7 +530,6 @@ public class PlayerController : MonoBehaviour
         {
             Zombiehit(hit);
         }
-
     }
 
     void Zombiehit(Collision2D hit)

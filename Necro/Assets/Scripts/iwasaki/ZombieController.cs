@@ -23,21 +23,22 @@ public class ZombieController : MonoBehaviour
     private int State;  //0で待機
                         //1で攻撃１
                         //2で攻撃２
-                        //3で乗っ取られてる
 
     public float Parameter_Speed; //待機中の移動スピード
-    public bool Range_Flag;
+    public bool Range_Flag1;
+    public bool Range_Flag2;
     public float Parameter_DashSpeed;   //一部キャラのダッシュスピード
     public int Rand_Percent;    //攻撃する確率
+    public bool Hijack_Frag;    //乗っ取られているか否か
 
     void Start()
     {
-        GameObject Player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
 
         LaterChance_count = 0;
         State = 0;
-        Range_Flag = false;
+        Range_Flag1 = false;
+        Range_Flag2 = false;
 
         switch (Type)
         {
@@ -55,7 +56,7 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (State == 0)
+        if (State == 0 && Hijack_Frag == false)
         {
             transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
         }
@@ -63,7 +64,7 @@ public class ZombieController : MonoBehaviour
         {
             State = 0;
 
-            if (Range_Flag == true && Random.Range(0,Rand_Percent) == 0)  //プレイヤーが攻撃１の射程圏内か
+            if (Range_Flag1 == true && Random.Range(0,Rand_Percent) == 0)  //プレイヤーが攻撃１の射程圏内か
             {
                 Debug.Log("攻撃１開始");
 
@@ -83,7 +84,7 @@ public class ZombieController : MonoBehaviour
                 }   //後隙時間の設定
                 State = 1;
             }
-            else if (Input.GetKeyDown("d")) //プレイヤーが攻撃２の射程圏内か
+            else if (Range_Flag2 == true && Random.Range(0, Rand_Percent) == 0) //プレイヤーが攻撃２の射程圏内か
             {
                 Debug.Log("攻撃２開始");
 
@@ -99,7 +100,7 @@ public class ZombieController : MonoBehaviour
                         LaterChance_count += 60;
                         break;
                     case ZombieType.BirdZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 1;
                         break;
                 }   //後隙時間の設定
                 State = 2;
@@ -211,6 +212,8 @@ public class ZombieController : MonoBehaviour
                 break;
 
             case ZombieType.BirdZombie:
+                Debug.Log("hri");
+                rb.AddForce(Vector2.up * 10f);
                 break;
 
         }   //攻撃２のタイムテーブル設定
