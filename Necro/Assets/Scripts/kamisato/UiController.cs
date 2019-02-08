@@ -11,14 +11,15 @@ public class UiController : MonoBehaviour {
     private PlayerController _zombi;
     private PlayerController _dogzombi;
     private GameObject _dogzombie;
-    //public GameObject m_Player;
+    private ChangePlayer changePlayer;
+
 
     float time;
     private float jobTime;
 
     public Sprite[] icon_Sprite = new Sprite[0];
-    public Sprite[] life_Sprite = new Sprite[0];
-
+    public GameObject[] life = new GameObject[0];
+    public int destroyCount = 0;
 
     // Use this for initialization
     void Start () {
@@ -58,8 +59,18 @@ public class UiController : MonoBehaviour {
     }
 
     public void Life()
-    {
-
+    { 
+        if(destroyCount == 1)
+        {
+            life[0].SetActive(false);
+        }else if(destroyCount == 2)
+        {
+            life[1].SetActive(false);
+        }
+        else if (destroyCount == 3)
+        {
+            life[2].SetActive(false);
+        }
     }
 
     public void JobTime()

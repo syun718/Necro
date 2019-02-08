@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public GameObject m_Player;
     public GameObject m_gero;
     public GameObject m_Soul;
-    public GameObject shotSoul;
 
     SpriteRenderer MainSpriteRenderer;
 
@@ -42,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public bool m_ShotSoul = true;
 
     private UiController uiController;
+    
 
     public enum PlayerJob
     {
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         MainSpriteRenderer = GetComponent<SpriteRenderer>();
         uiController = GameObject.Find("UiController").GetComponent<UiController>();
         m_changePlayer = GameObject.Find("PlayerManager").GetComponent<ChangePlayer>();
+        //SoulShot soulShot = m_Soul.GetComponent<SoulShot>();
         PlayerData.Instance.SetJobTime = PlayerData.Instance.jobTime;
         string JobName = m_job.ToString();
 
@@ -289,11 +290,10 @@ public class PlayerController : MonoBehaviour
         {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
-            Vector2 temp = transform.localScale;
-            temp.x = (float)x / 6.0f;
-            transform.localScale = temp;
+            var direction = new Vector3(0, 0, x);
+            transform.localRotation = Quaternion.LookRotation(direction);
         }
-        //m_playerAnimations.MoveAnimation(horizontal);
+        m_playerAnimations.MoveAnimation(horizontal);
     }
 
     public void ZombieTime()
@@ -331,6 +331,7 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraPos = m_mainCamera.transform.position;
         //プレイヤーの位置から右に4移動した位置を画面中央にする
         cameraPos.x = transform.position.x + 1;
+        cameraPos.y = transform.position.y + 1;
         m_mainCamera.transform.position = cameraPos;
         //カメラ表示領域の左下をワールド座標に変換
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
@@ -354,9 +355,10 @@ public class PlayerController : MonoBehaviour
         {
             if (m_ShotSoul)
             {
-                Instantiate(shotSoul, transform.position, transform.rotation);
+                Instantiate(m_Soul, transform.position, transform.rotation);
             }
             m_ShotSoul = false;
+
         }
 
         if (m_playerInput.button_X)
@@ -423,7 +425,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
-                        Instantiate(shotSoul, transform.position, transform.rotation);
+                        Instantiate(m_Soul, transform.position, transform.rotation);
                     }
                     m_ShotSoul = false;
                 }
@@ -451,7 +453,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
-                        Instantiate(shotSoul, transform.position, transform.rotation);
+                        Instantiate(m_Soul, transform.position, transform.rotation);
                     }
                     m_ShotSoul = false;
                 }
@@ -479,7 +481,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
-                        Instantiate(shotSoul, transform.position, transform.rotation);
+                        Instantiate(m_Soul, transform.position, transform.rotation);
                     }
                     m_ShotSoul = false;
                 }
@@ -507,7 +509,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
-                        Instantiate(shotSoul, transform.position, transform.rotation);
+                        Instantiate(m_Soul, transform.position, transform.rotation);
                     }
                     m_ShotSoul = false;
                 }
@@ -541,6 +543,8 @@ public class PlayerController : MonoBehaviour
                 //m_Soul.SetActive(true);
                 MainSpriteRenderer.enabled = false;
                 m_Zombiehit = true;
+                uiController.destroyCount += 1;
+                uiController.Life();
                 break;
 
             default:
