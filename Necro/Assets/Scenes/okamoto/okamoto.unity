@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 75620385}
+  m_action: 0
 --- !u!95 &75620385
 Animator:
   serializedVersion: 3
@@ -291,6 +292,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_ShotSoul: 1
   m_job: 2
 --- !u!114 &75620387
 MonoBehaviour:
@@ -915,6 +917,7 @@ MonoBehaviour:
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_ShotSoul: 1
   m_job: 1
 --- !u!114 &549395399
 MonoBehaviour:
@@ -928,6 +931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 549395400}
+  m_action: 0
 --- !u!95 &549395400
 Animator:
   serializedVersion: 3
@@ -1575,12 +1579,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1736213976ca61d46b9f6c4b96b37f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Player: {fileID: 0}
   icon_Sprite:
   - {fileID: 21300000, guid: a1bfce6608b5b0948a634e858a288f84, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
   - {fileID: 21300000, guid: 69f31177b793791498ac020ba6f69bf6, type: 3}
+  life_Sprite: []
 --- !u!4 &1638885303
 Transform:
   m_ObjectHideFlags: 0
@@ -1800,6 +1804,7 @@ MonoBehaviour:
   m_flap: 1500
   m_jobTime: 0
   m_DestroyTime: 0
+  m_ShotSoul: 1
   m_job: 0
 --- !u!50 &1768808471
 Rigidbody2D:
@@ -1939,6 +1944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1768808476}
+  m_action: 0
 --- !u!70 &1768808478
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2044,6 +2050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1810005428}
+  m_action: 0
 --- !u!95 &1810005428
 Animator:
   serializedVersion: 3
@@ -2079,12 +2086,13 @@ MonoBehaviour:
   m_gero: {fileID: 1596279823435984, guid: 977504c8cbe1c4e94bf405fefeb50070, type: 2}
   m_Soul: {fileID: 0}
   muzzle: {fileID: 453174107}
-  animator: {fileID: 1810005428}
+  animator: {fileID: 75620385}
   m_Speed: 0
   firstSpeed: 0
   m_flap: 0
   m_jobTime: 0
   m_DestroyTime: 0
+  m_ShotSoul: 1
   m_job: 3
 --- !u!114 &1810005430
 MonoBehaviour:

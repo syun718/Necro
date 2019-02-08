@@ -6,8 +6,17 @@ TagManager:
   tags:
   - Ground
   - Zombie
+<<<<<<< HEAD
   - Z_Attack
   - Search Area
+=======
+  - Dogzombie
+  - GaloZombie
+  - PowerZombie
+  - BirdZombie
+  - Gero
+  - Soul
+>>>>>>> newkamisato
   layers:
   - Default
   - TransparentFX
@@ -17,6 +26,7 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - 
   - 
   - 
@@ -24,6 +34,15 @@ TagManager:
   - 
   - 
   - 
+=======
+  - Player
+  - Zombie
+  - GaloZombie
+  - Dogzombie
+  - PowerZombie
+  - BirdZombie
+  - bg
+>>>>>>> newkamisato
   - 
   - 
   - 
@@ -42,6 +61,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+<<<<<<< HEAD
+=======
+  - name: bg
+    uniqueID: 1275865961
+    locked: 0
+  - name: ground
+    uniqueID: 1223741963
+    locked: 0
+>>>>>>> newkamisato
   - name: Default
     uniqueID: 0
     locked: 0
