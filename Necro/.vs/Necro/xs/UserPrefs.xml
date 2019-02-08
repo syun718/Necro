@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{941B969B-D7E6-813A-8A26-5EF823013102}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/okamoto/AnimatorManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/okamoto/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/okamoto/PlayerController.cs" Line="172" Column="38" />
+      <File FileName="Assets/Scripts/okamoto/PlayerController.cs" Line="442" Column="39" />
       <File FileName="Assets/Scripts/okamoto/ChangePlayer.cs" Line="42" Column="75" />
       <File FileName="Assets/Scripts/okamoto/PlayerInput.cs" Line="25" Column="80" />
       <File FileName="Assets/Scripts/okamoto/PlayerData.cs" Line="14" Column="28" />

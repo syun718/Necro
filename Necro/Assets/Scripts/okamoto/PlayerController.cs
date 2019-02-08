@@ -180,9 +180,9 @@ public class PlayerController : MonoBehaviour {
 
     void Job()
     {
-        switch (gameObject.tag)
+        switch (m_job)
         {
-            case TagName.player:
+            case PlayerJob.Player:
                 PlayerButton();
                 PlayerMove();
                 //最も近かったオブジェクトを取得
@@ -190,7 +190,25 @@ public class PlayerController : MonoBehaviour {
                 m_changePlayer.charaLists[1] = nearObj;
                 break;
 
-            case TagName.zombie:
+            case PlayerJob.GeroZomie:
+                PlayerMove();
+                ZombieButton();
+                ZombieTime();
+                break;
+
+            case PlayerJob.PowerZombie:
+                PlayerMove();
+                ZombieButton();
+                ZombieTime();
+                break;
+
+            case PlayerJob.Dogzombie:
+                PlayerMove();
+                ZombieButton();
+                ZombieTime();
+                break;
+
+            case PlayerJob.BirdZombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
@@ -210,9 +228,8 @@ public class PlayerController : MonoBehaviour {
         {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
-            Vector2 temp = transform.localScale;
-            temp.x = (float)x / 6.0f;
-            transform.localScale = temp;
+            var direction = new Vector3(0, 0, x);
+            transform.localRotation = Quaternion.LookRotation(direction);
         }
         m_playerAnimations.MoveAnimation(horizontal);
     }
@@ -250,6 +267,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 cameraPos= m_mainCamera.transform.position;
         //プレイヤーの位置から右に4移動した位置を画面中央にする
         cameraPos.x = transform.position.x + 1;
+        cameraPos.y = transform.position.y + 1;
         m_mainCamera.transform.position = cameraPos;
         //カメラ表示領域の左下をワールド座標に変換
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
@@ -421,7 +439,7 @@ public class PlayerController : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D hit)
     {
         m_jump = false;
-        if (gameObject.tag == TagName.player)
+        if (m_job == PlayerJob.Player)
         {
             Zombiehit(hit);
         }
