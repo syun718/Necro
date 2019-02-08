@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    //最も近いオブジェクト
-    public GameObject nearObj;
     public GameObject m_mainCamera;
     public GameObject m_Player;
     public GameObject m_gero;
@@ -88,45 +86,11 @@ public class PlayerController : MonoBehaviour
         m_jobTime = PlayerData.Instance.jobTime;
     }
 
-    private GameObject serchTag(GameObject nowObj, string tagName)
-    {
-        //距離用一時変数
-        float tmpDis = 0;
-        //最も近いオブジェクトの距離
-        float nearDis = 10;
-        //オブジェクト
-        GameObject targetObj = null;
-
-        //タグ指定されたオブジェクトを配列で取得する
-        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
-        {
-
-            //自身と取得したオブジェクトの距離を取得
-            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
-
-            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
-            //一時変数に距離を格納
-            if (nearDis > tmpDis)
-            {
-                nearDis = tmpDis;
-                //nearObjName = obs.name;
-                targetObj = obs;
-            }
-
-        }
-        return targetObj;
-    }
-
     void Update()
     {
         m_playerInput.EscapePlayerInput();
         m_jobTime = PlayerData.Instance.jobTime;
         Debug.Log(playerStock);
-
-        if (m_Zombiehit)
-        {
-            ZombiehitSet();
-        }
     }
 
     void FixedUpdate()
@@ -190,89 +154,30 @@ public class PlayerController : MonoBehaviour
             case PlayerJob.Player:
                 PlayerButton();
                 PlayerMove();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                } else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.GeroZomie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.PowerZombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.Dogzombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             case PlayerJob.BirdZombie:
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
-                if (PlayerData.Instance.m_zombieNum == 0)
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[1] = nearObj;
-                }
-                else
-                {
-                    //最も近かったオブジェクトを取得
-                    nearObj = serchTag(gameObject, TagName.zombie);
-                    m_changePlayer.charaLists[0] = nearObj;
-                }
                 break;
 
             default:
@@ -368,33 +273,6 @@ public class PlayerController : MonoBehaviour
         {
             m_Speed = firstSpeed;
         }
-
-        if (m_Zombiehit)
-        {
-            ZombiehitSet();
-        }
-    }
-
-    void ZombiehitSet()
-    {
-        //普通のゾンビと当たった場合
-        m_DestroyTime -= Time.deltaTime;
-        if (m_DestroyTime <= 0)
-        {
-            m_DestroyTime = 10;
-            PlayerData.Instance.playerStock -= 1;
-            m_Zombiehit = false;
-        }
-
-        if (m_playerInput.button_Y)
-        {
-            m_DestroyTime = 10;
-            PlayerData.Instance.m_zombieNum = 1;
-            m_changePlayer.ChangeCharacter(m_changePlayer.nowChara);
-            PlayerData.Instance.playerStock -= 1;
-            m_Player.SetActive(false);
-            m_Zombiehit = false;
-        }
     }
 
     void ZombieButton()
@@ -411,16 +289,6 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_B)
                 {
-                    // ゲロの複製
-                    GameObject bullets = Instantiate(m_gero) as GameObject;
-
-                    // ゲロの位置を調整
-                    bullets.transform.position = muzzle.position;
-                    m_playerAnimations.GeroAnimation();
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -429,9 +297,19 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    // ゲロの複製
+                    GameObject bullets = Instantiate(m_gero) as GameObject;
+
+                    // ゲロの位置を調整
+                    bullets.transform.position = muzzle.position;
+                    m_playerAnimations.GeroAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -444,11 +322,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -457,9 +330,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    m_playerAnimations.TackleAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -472,11 +350,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -485,9 +358,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
-                if (m_playerInput.button_Y)
+                if (m_playerInput.button_X)
                 {
 
+                }
+
+                if (m_playerInput.button_Y)
+                {
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -500,11 +378,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-
-                }
-
-                if (m_playerInput.button_X)
-                {
                     Debug.Log("a");
                     if (m_ShotSoul)
                     {
@@ -513,9 +386,14 @@ public class PlayerController : MonoBehaviour
                     m_ShotSoul = false;
                 }
 
+                if (m_playerInput.button_X)
+                {
+                    m_playerAnimations.FlyAnimation();
+                }
+
                 if (m_playerInput.button_Y)
                 {
-
+                    m_playerAnimations.AtteckAnimation();
                 }
                 break;
 
@@ -527,7 +405,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D hit)
     {
         m_jump = false;
-        if (gameObject.tag == TagName.player)
+        if (m_job == PlayerJob.Player)
         {
             Zombiehit(hit);
         }

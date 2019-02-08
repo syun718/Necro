@@ -59,6 +59,36 @@ public class PlayerAnimations : MonoBehaviour {
         }));
     }
 
+    public void AtteckAnimation()
+    {
+        m_animatorManeger.SetAtteck();
+        //アニメーション再生後の処理
+        StartCoroutine(ActionAnimation(() =>
+        {
+
+        }));
+    }
+
+    public void FlyAnimation()
+    {
+        m_animatorManeger.SetFly();
+        //アニメーション再生後の処理
+        StartCoroutine(ActionAnimation(() =>
+        {
+
+        }));
+    }
+
+    public void TackleAnimation()
+    {
+        m_animatorManeger.SetTackle();
+        //アニメーション再生後の処理
+        StartCoroutine(ActionAnimation(() =>
+        {
+
+        }));
+    }
+
     IEnumerator ActionAnimation(System.Action callback)
     {
         yield return null;
