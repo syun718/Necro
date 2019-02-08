@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SearchPlayer : MonoBehaviour {
+public class SearchPlayer : MonoBehaviour
+{
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -26,7 +27,7 @@ public class SearchPlayer : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == " Man")
+        if (col.tag == " Man")
         {
             Debug.Log("見失う");
             GetComponentInParent<NormalZombieMove>().SetState("walk");
@@ -39,13 +40,13 @@ public class SearchPlayer : MonoBehaviour {
         Chase
     };
 
-    void Start ()
+    void Start()
     {
-        	
-	}
 
-	void Update ()
+    }
+
+    void Update()
     {
-		
-	}
+
+    }
 }

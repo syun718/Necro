@@ -9,7 +9,8 @@ public class PlayerAnimations : MonoBehaviour {
     AnimatorManager m_animatorManeger;
     public Animator animator;
 
-    bool m_action;
+
+    public bool m_action;
 
     // Use this for initialization
     void Start () {
@@ -51,6 +52,16 @@ public class PlayerAnimations : MonoBehaviour {
     {
         m_action = true;
         m_animatorManeger.SetGero_Gero();
+        //アニメーション再生後の処理
+        StartCoroutine(ActionAnimation(() =>
+        {
+
+        }));
+    }
+
+    public void AtteckAnimation()
+    {
+        m_animatorManeger.SetAtteck();
         //アニメーション再生後の処理
         StartCoroutine(ActionAnimation(() =>
         {

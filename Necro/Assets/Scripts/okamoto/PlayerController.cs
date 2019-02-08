@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
-    //最も近いオブジェクト
-    public GameObject nearObj;
     public GameObject m_mainCamera;
     public GameObject m_Player;
     public GameObject m_gero;
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D m_rigid2D;
     Vector2 m_vector;
     PlayerInput m_playerInput;
-   
+
     ChangePlayer m_changePlayer;
     PlayerAnimations m_playerAnimations;
     public Animator animator;
@@ -37,8 +36,10 @@ public class PlayerController : MonoBehaviour {
     bool m_jump = false;
     bool m_Move = true;
     bool m_Zombiehit = false;
+    public bool m_ShotSoul = true;
 
     private UiController uiController;
+    
 
     public enum PlayerJob
     {
@@ -51,7 +52,8 @@ public class PlayerController : MonoBehaviour {
 
     public PlayerJob m_job;
 
-    void Start () {
+    void Start()
+    {
         Status();
         playerStock = PlayerData.Instance.playerStock;
         m_vector = Vector2.zero;
@@ -64,18 +66,23 @@ public class PlayerController : MonoBehaviour {
         MainSpriteRenderer = GetComponent<SpriteRenderer>();
         uiController = GameObject.Find("UiController").GetComponent<UiController>();
         m_changePlayer = GameObject.Find("PlayerManager").GetComponent<ChangePlayer>();
+        //SoulShot soulShot = m_Soul.GetComponent<SoulShot>();
         PlayerData.Instance.SetJobTime = PlayerData.Instance.jobTime;
         string JobName = m_job.ToString();
 
         switch (m_job)
         {
             case PlayerJob.GeroZomie:
+<<<<<<< HEAD
                 uiController.ChangePlayerIcom(JobName);
+=======
+                uiController.ChangePlayerIcom();
+>>>>>>> newkamisato
                 break;
 
             //case TagName.gelozombie:
-                //uiController.ChangePlayerIcom(gameObject.tag);
-                //break;
+            //uiController.ChangePlayerIcom(gameObject.tag);
+            //break;
 
             default:
                 break;
@@ -84,41 +91,13 @@ public class PlayerController : MonoBehaviour {
         m_jobTime = PlayerData.Instance.jobTime;
     }
 
-    private GameObject serchTag(GameObject nowObj, string tagName)
+    void Update()
     {
-        //距離用一時変数
-        float tmpDis = 0;
-        //最も近いオブジェクトの距離
-        float nearDis = 10;
-        //オブジェクト
-        GameObject targetObj = null; 
-
-        //タグ指定されたオブジェクトを配列で取得する
-        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
-        {
-        
-                //自身と取得したオブジェクトの距離を取得
-                tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
-
-                //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
-                //一時変数に距離を格納
-                if (nearDis > tmpDis)
-                {
-                    nearDis = tmpDis;
-                    //nearObjName = obs.name;
-                    targetObj = obs;
-                }
-
-        }
-        return targetObj;
-    }
-
-    void Update () {
         m_playerInput.EscapePlayerInput();
         m_jobTime = PlayerData.Instance.jobTime;
         Debug.Log(playerStock);
 
-        if(m_Zombiehit)
+        if (m_Zombiehit)
         {
             ZombiehitSet();
         }
@@ -185,23 +164,32 @@ public class PlayerController : MonoBehaviour {
             case PlayerJob.Player:
                 PlayerButton();
                 PlayerMove();
-                //最も近かったオブジェクトを取得
-                nearObj = serchTag(gameObject, TagName.zombie);
-                m_changePlayer.charaLists[1] = nearObj;
                 break;
 
             case PlayerJob.GeroZomie:
+<<<<<<< HEAD
+=======
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
             case PlayerJob.PowerZombie:
+>>>>>>> newkamisato
                 PlayerMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
+<<<<<<< HEAD
+            case PlayerJob.PowerZombie:
+                PlayerMove();
+                ZombieButton();
+                ZombieTime();
+                break;
+
+=======
+>>>>>>> newkamisato
             case PlayerJob.Dogzombie:
                 PlayerMove();
                 ZombieButton();
@@ -247,7 +235,9 @@ public class PlayerController : MonoBehaviour {
                 PlayerPosition();
                 m_Player.SetActive(true);
                 gameObject.SetActive(false);
-            } else {
+            }
+            else
+            {
                 gameObject.SetActive(false);
                 Debug.Log("END");
             }
@@ -264,7 +254,7 @@ public class PlayerController : MonoBehaviour {
     void CameraMove()
     {
         //カメラの位置を取得
-        Vector3 cameraPos= m_mainCamera.transform.position;
+        Vector3 cameraPos = m_mainCamera.transform.position;
         //プレイヤーの位置から右に4移動した位置を画面中央にする
         cameraPos.x = transform.position.x + 1;
         cameraPos.y = transform.position.y + 1;
@@ -280,19 +270,24 @@ public class PlayerController : MonoBehaviour {
 
     void PlayerButton()
     {
-        if(m_playerInput.button_A && !m_jump)
+        if (m_playerInput.button_A && !m_jump)
         {
             m_rigid2D.AddForce(Vector2.up * m_flap);
             m_playerAnimations.JumpAnimation();
             m_jump = true;
         }
 
-        if(m_playerInput.button_B)
+        if (m_playerInput.button_B)
         {
+            if (m_ShotSoul)
+            {
+                Instantiate(m_Soul, transform.position, transform.rotation);
+            }
+            m_ShotSoul = false;
 
         }
 
-        if(m_playerInput.button_X)
+        if (m_playerInput.button_X)
         {
             m_Speed = PlayerData.Instance.playerDashSpeed;
         }
@@ -331,10 +326,10 @@ public class PlayerController : MonoBehaviour {
 
     void ZombieButton()
     {
-        switch(m_job)
+        switch (m_job)
         {
             case PlayerJob.GeroZomie:
-                if(m_playerInput.button_A && !m_jump)
+                if (m_playerInput.button_A && !m_jump)
                 {
                     m_rigid2D.AddForce(Vector2.up * m_flap);
                     m_playerAnimations.JumpAnimation();
@@ -351,9 +346,14 @@ public class PlayerController : MonoBehaviour {
                     m_playerAnimations.GeroAnimation();
                 }
 
-                if(m_playerInput.button_X)
+                if (m_playerInput.button_X)
                 {
-
+                    Debug.Log("a");
+                    if (m_ShotSoul)
+                    {
+                        Instantiate(m_Soul, transform.position, transform.rotation);
+                    }
+                    m_ShotSoul = false;
                 }
 
                 if (m_playerInput.button_Y)
@@ -371,12 +371,17 @@ public class PlayerController : MonoBehaviour {
                 }
                 if (m_playerInput.button_B)
                 {
-                    
+
                 }
 
                 if (m_playerInput.button_X)
                 {
-
+                    Debug.Log("a");
+                    if (m_ShotSoul)
+                    {
+                        Instantiate(m_Soul, transform.position, transform.rotation);
+                    }
+                    m_ShotSoul = false;
                 }
 
                 if (m_playerInput.button_Y)
@@ -399,7 +404,12 @@ public class PlayerController : MonoBehaviour {
 
                 if (m_playerInput.button_X)
                 {
-
+                    Debug.Log("a");
+                    if (m_ShotSoul)
+                    {
+                        Instantiate(m_Soul, transform.position, transform.rotation);
+                    }
+                    m_ShotSoul = false;
                 }
 
                 if (m_playerInput.button_Y)
@@ -422,7 +432,12 @@ public class PlayerController : MonoBehaviour {
 
                 if (m_playerInput.button_X)
                 {
-
+                    Debug.Log("a");
+                    if (m_ShotSoul)
+                    {
+                        Instantiate(m_Soul, transform.position, transform.rotation);
+                    }
+                    m_ShotSoul = false;
                 }
 
                 if (m_playerInput.button_Y)
@@ -451,9 +466,11 @@ public class PlayerController : MonoBehaviour {
         {
             case TagName.zombie:
                 m_Move = false;
-                m_Soul.SetActive(true);
+                //m_Soul.SetActive(true);
                 MainSpriteRenderer.enabled = false;
                 m_Zombiehit = true;
+                uiController.destroyCount += 1;
+                uiController.Life();
                 break;
 
             default:

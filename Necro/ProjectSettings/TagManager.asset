@@ -10,6 +10,8 @@ TagManager:
   - GaloZombie
   - PowerZombie
   - BirdZombie
+  - Gero
+  - Soul
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - Dogzombie
   - PowerZombie
   - BirdZombie
-  - 
+  - bg
   - 
   - 
   - 
@@ -44,6 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bg
+    uniqueID: 1275865961
+    locked: 0
+  - name: ground
+    uniqueID: 1223741963
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
