@@ -7,7 +7,6 @@ public class ZombieController : MonoBehaviour
     Rigidbody2D rb;
 
     public GameObject GeroZomie_Gero;
-    public GameObject Player;
 
     public enum ZombieType
     {
@@ -20,7 +19,7 @@ public class ZombieController : MonoBehaviour
     public ZombieType Type;
 
     private int LaterChance_count;  //攻撃後の後隙時間カウンタ
-    private int State;  //0で待機
+    private int State;  //0で移動可能
                         //1で攻撃１
                         //2で攻撃２
 
@@ -39,18 +38,6 @@ public class ZombieController : MonoBehaviour
         State = 0;
         Range_Flag1 = false;
         Range_Flag2 = false;
-
-        switch (Type)
-        {
-            case ZombieType.GeroZombie:
-                break;
-            case ZombieType.DogZombie:
-                break;
-            case ZombieType.PowerZombie:
-                break;
-            case ZombieType.BirdZombie:
-                break;
-        }   //後隙時間の設定
     }
 
     // Update is called once per frame
@@ -91,13 +78,13 @@ public class ZombieController : MonoBehaviour
                 switch (Type)
                 {
                     case ZombieType.GeroZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 0;
                         break;
                     case ZombieType.DogZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 0;
                         break;
                     case ZombieType.PowerZombie:
-                        LaterChance_count += 60;
+                        LaterChance_count += 0;
                         break;
                     case ZombieType.BirdZombie:
                         LaterChance_count += 1;

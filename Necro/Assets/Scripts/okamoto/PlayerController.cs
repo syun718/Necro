@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
 
     private UiController uiController;
     
-
     public enum PlayerJob
     {
         Player,
