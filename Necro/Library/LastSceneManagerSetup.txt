@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/kamisato/kamisato.unity
+=======
+- path: Assets/Scenes/Stage1.unity
+>>>>>>> newkamisato
   isLoaded: 1
   isActive: 1

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody2D>();
-        uiController = GameObject.Find("UiController").GetComponent<UiController>();
+        //uiController = GameObject.Find("UiController").GetComponent<UiController>();
     }
 
     // Update is called once per frame
