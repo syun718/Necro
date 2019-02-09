@@ -24,7 +24,6 @@ public class SearchAreaScript : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("exit");
         if (collision.gameObject.tag == TagName.player)
         {
             if (Range_Nom == 1)

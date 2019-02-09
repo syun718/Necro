@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.GeroZomie:
-                PlayerData.Instance.jobTime = 5f;
+                PlayerData.Instance.jobTime = 55f;
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_B)
                 {
-                    Debug.Log("a");
+                    Debug.Log("g");
                     if (m_ShotSoul)
                     {
                         Instantiate(m_Soul, transform.position, transform.rotation);
@@ -299,12 +299,14 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_X)
                 {
+                    Debug.Log("gero");
                     // ゲロの複製
-                    GameObject bullets = Instantiate(m_gero) as GameObject;
+                    //GameObject bullets = Instantiate(m_gero) as GameObject;
 
                     // ゲロの位置を調整
-                    bullets.transform.position = muzzle.position;
+                    //bullets.transform.position = muzzle.position;
                     m_playerAnimations.GeroAnimation();
+                    this.gameObject.GetComponent<ZombieController>().AttackCoal1();
                 }
 
                 if (m_playerInput.button_Y)

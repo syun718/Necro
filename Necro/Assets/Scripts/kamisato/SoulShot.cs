@@ -92,6 +92,7 @@ public class SoulShot : MonoBehaviour {
         }
         else if(col.gameObject.tag == TagName.zombie)
         {
+            col.gameObject.GetComponent<ZombieController>().Hijack_Frag = true;
             PlayerData.Instance.m_zombieNum = 1;
             uiController.destroyCount = 0;
             if (uiController.destroyCount == 0)

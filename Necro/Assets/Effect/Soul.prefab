@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f05ab82d6aadbd468e7509080e181a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearObj: {fileID: 0}
   soulSpeed: 5
 --- !u!198 &198372434777574370
 ParticleSystem:
@@ -4660,7 +4661,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

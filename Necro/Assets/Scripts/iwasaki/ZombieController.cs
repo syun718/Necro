@@ -6,7 +6,10 @@ public class ZombieController : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    public GameObject GeroZomie_Gero;
+    PlayerAnimations m_playerAnimations;
+
+    public GameObject GeroZomie_L_Gero;
+    public GameObject GeroZomie_R_Gero;
 
     public enum ZombieType
     {
@@ -18,8 +21,8 @@ public class ZombieController : MonoBehaviour
 
     public ZombieType Type;
 
-    private int LaterChance_count;  //攻撃後の後隙時間カウンタ
-    private int State;  //0で移動可能
+    public int LaterChance_count;  //攻撃後の後隙時間カウンタ
+    public int State;  //0で移動可能
                         //1で攻撃１
                         //2で攻撃２
 
@@ -33,6 +36,7 @@ public class ZombieController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        m_playerAnimations = GetComponent<PlayerAnimations>();
 
         LaterChance_count = 0;
         State = 0;
@@ -43,70 +47,111 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (State == 0 && Hijack_Frag == false)
+        if (Hijack_Frag == false)
         {
-            transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
-        }
-        if (LaterChance_count == 0)
-        {
-            State = 0;
-
-            if (Range_Flag1 == true && Random.Range(0,Rand_Percent) == 0)  //プレイヤーが攻撃１の射程圏内か
+            if (State == 0)
             {
-                Debug.Log("攻撃１開始");
-
-                switch (Type) {
-                    case ZombieType.GeroZombie:
-                        LaterChance_count += 60;
-                        break;
-                    case ZombieType.DogZombie:
-                        LaterChance_count += 180;
-                        break;
-                    case ZombieType.PowerZombie:
-                        LaterChance_count += 120;
-                        break;
-                    case ZombieType.BirdZombie:
-                        LaterChance_count += 300;
-                        break;
-                }   //後隙時間の設定
-                State = 1;
+                transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
+                m_playerAnimations.MoveAnimation(1.0f); m_playerAnimations.MoveAnimation(1.0f);
             }
-            else if (Range_Flag2 == true && Random.Range(0, Rand_Percent) == 0) //プレイヤーが攻撃２の射程圏内か
+            if (LaterChance_count == 0)
             {
-                Debug.Log("攻撃２開始");
+                State = 0;
 
-                switch (Type)
+                if (Range_Flag1 == true && Random.Range(0, Rand_Percent) == 0)  //プレイヤーが攻撃１の射程圏内か
                 {
-                    case ZombieType.GeroZombie:
-                        LaterChance_count += 0;
-                        break;
-                    case ZombieType.DogZombie:
-                        LaterChance_count += 0;
-                        break;
-                    case ZombieType.PowerZombie:
-                        LaterChance_count += 0;
-                        break;
-                    case ZombieType.BirdZombie:
-                        LaterChance_count += 1;
-                        break;
-                }   //後隙時間の設定
-                State = 2;
+                    AttackCoal1();
+                }
+                else if (Range_Flag2 == true && Random.Range(0, Rand_Percent) == 0) //プレイヤーが攻撃２の射程圏内か
+                {
+                    AttackCoal2();
+                }
             }
-        }else
-        {
+            else
+            {
+                    switch (State)
+                {
+                    case 1:
+                        Attack1();
+                        break;
+
+                    case 2:
+                        Attack2();
+                        break;
+
+                    default:
+                        break;
+                }//攻撃関数呼び出し
+                LaterChance_count--;
+            }
+        }
+        else {
+            if (LaterChance_count == 0)
+            {
+                State = 0;
+            }
             switch (State)
             {
                 case 1:
                     Attack1();
+                    LaterChance_count--;
                     break;
 
                 case 2:
                     Attack2();
+                    LaterChance_count--;
+                    break;
+
+                default:
                     break;
             }//攻撃関数呼び出し
-
-            LaterChance_count--;
+            
         }
+    }
+
+    public void AttackCoal1()
+    {
+        Debug.Log("攻撃１開始");
+
+        switch (Type)
+        {
+            case ZombieType.GeroZombie:
+                LaterChance_count = 60;
+                break;
+            case ZombieType.DogZombie:
+                LaterChance_count += 180;
+                break;
+            case ZombieType.PowerZombie:
+                LaterChance_count += 120;
+                break;
+            case ZombieType.BirdZombie:
+                LaterChance_count += 300;
+                break;
+        }   //後隙時間の設定
+        State = 1;
+    }
+
+    public void AttackCoal2()
+    {
+
+        Debug.Log("攻撃２開始");
+
+        switch (Type)
+        {
+            case ZombieType.GeroZombie:
+                LaterChance_count += 0;
+                break;
+            case ZombieType.DogZombie:
+                LaterChance_count += 0;
+                break;
+            case ZombieType.PowerZombie:
+                LaterChance_count += 0;
+                break;
+            case ZombieType.BirdZombie:
+                LaterChance_count += 1;
+                break;
+        }   //後隙時間の設定
+        State = 2;
     }
 
     void Attack1()
@@ -116,11 +161,19 @@ public class ZombieController : MonoBehaviour
             case ZombieType.GeroZombie:
                 if (LaterChance_count == 60)
                 {
-
+                    m_playerAnimations.GeroAnimation(); m_playerAnimations.GeroAnimation();
                 }
                 else if (LaterChance_count == 50)
                 {
-                    Instantiate(GeroZomie_Gero, transform.position, Quaternion.identity);
+                    if (Hijack_Frag)
+                    {
+                        Instantiate(GeroZomie_R_Gero, transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(GeroZomie_L_Gero, transform.position, Quaternion.identity);
+                    }
+
                 }
                 break;
 
@@ -188,7 +241,7 @@ public class ZombieController : MonoBehaviour
                 }
                 else if (LaterChance_count == 50)
                 {
-                    Instantiate(GeroZomie_Gero, transform.position, Quaternion.identity);
+                    //Instantiate(GeroZomie_Gero, transform.position, Quaternion.identity);
                 }
                 break;
 
