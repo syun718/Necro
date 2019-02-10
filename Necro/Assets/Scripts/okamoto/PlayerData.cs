@@ -15,13 +15,9 @@ public class PlayerData
 
     public int playerHp = 0;
     public float playerWalkSpeed = 5f;
-<<<<<<< HEAD
-    public float playerDashSpeed = 10f;
-    public float playerJumpPower = 1500f;
-=======
+
     public float playerDashSpeed = 7f;
     public float playerJumpPower = 1750f;
->>>>>>> newkamisato
 
     public int zonbieHp = 10;
     public int zonbieAttack = 1;

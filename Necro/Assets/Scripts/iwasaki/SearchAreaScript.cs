@@ -20,6 +20,16 @@ public class SearchAreaScript : MonoBehaviour {
                 zombie.gameObject.GetComponent<ZombieController>().Range_Flag2 = true;
             }
         }
+
+        if (collision.gameObject.tag == TagName.zombie)
+        {
+            if (Range_Nom == 3)
+            {
+                Debug.Log("sibou");
+                collision.gameObject.GetComponent<ZombieController>().Fri();
+            }
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

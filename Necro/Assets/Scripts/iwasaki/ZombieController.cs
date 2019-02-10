@@ -10,6 +10,7 @@ public class ZombieController : MonoBehaviour
 
     public GameObject GeroZomie_L_Gero;
     public GameObject GeroZomie_R_Gero;
+    public GameObject Attack_Area;
 
     public enum ZombieType
     {
@@ -200,10 +201,11 @@ public class ZombieController : MonoBehaviour
                 if (LaterChance_count == 120)
                 {
                     Parameter_Speed = 0;
+                    m_playerAnimations.TackleAnimation();
                 }
                 else if (LaterChance_count <= 11)
                 {
-                    Parameter_Speed = 1;
+                    Parameter_Speed = 0.5f;
                 }
                 else if (LaterChance_count <= 111)
                 {
@@ -212,6 +214,7 @@ public class ZombieController : MonoBehaviour
                         Parameter_Speed += 0.1f;
                     }
                     transform.Translate(new Vector2(Parameter_Speed * 0.05f, rb.velocity.y)); //移動
+                    m_playerAnimations.TackleAnimation();
                 }
                 break;
 
@@ -258,5 +261,11 @@ public class ZombieController : MonoBehaviour
 
         }   //攻撃２のタイムテーブル設定
         //Debug.Log("Attack2:"+ LaterChance_count);
+    }
+
+    public void Fri()
+    {
+        Debug.Log("tonda");
+        rb.AddForce(Vector2.up * 1000f);
     }
 }

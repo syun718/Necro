@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.GeroZomie:
-                PlayerData.Instance.jobTime = 55f;
+                PlayerData.Instance.jobTime = 60f;
                 firstSpeed = PlayerData.Instance.vomitSpeed;
                 m_Speed = firstSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.PowerZombie:
-                PlayerData.Instance.jobTime = 15f;
+                PlayerData.Instance.jobTime = 60f;
                 firstSpeed = PlayerData.Instance.muscleSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.Dogzombie:
-                PlayerData.Instance.jobTime = 15f;
+                PlayerData.Instance.jobTime = 60f;
                 firstSpeed = PlayerData.Instance.dogSpeed;
                 m_flap = PlayerData.Instance.playerJumpPower;
                 m_Speed = firstSpeed;
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.BirdZombie:
-                PlayerData.Instance.jobTime = 5f;
+                PlayerData.Instance.jobTime = 60f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
                 tag = TagName.player;
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
         // 右・左
         float x = Input.GetAxisRaw("Horizontal");
         float horizontal = m_playerInput.Laxis_x;
-        if ((int)x != 0 || (int)horizontal != 0)
+        if (Mathf.Abs(x) >= 0.7 || Mathf.Abs(horizontal) >= 0.7)
         {
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
@@ -289,7 +289,6 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_B)
                 {
-                    Debug.Log("g");
                     if (m_ShotSoul)
                     {
                         Instantiate(m_Soul, transform.position, transform.rotation);
@@ -299,42 +298,8 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_X)
                 {
-                    Debug.Log("gero");
-                    // ゲロの複製
-                    //GameObject bullets = Instantiate(m_gero) as GameObject;
-
-                    // ゲロの位置を調整
-                    //bullets.transform.position = muzzle.position;
                     m_playerAnimations.GeroAnimation();
                     this.gameObject.GetComponent<ZombieController>().AttackCoal1();
-                }
-
-                if (m_playerInput.button_Y)
-                {
-                    m_playerAnimations.AtteckAnimation();
-                }
-                break;
-
-            case PlayerJob.PowerZombie:
-                if (m_playerInput.button_A && !m_jump)
-                {
-                    m_rigid2D.AddForce(Vector2.up * m_flap);
-                    m_playerAnimations.JumpAnimation();
-                    m_jump = true;
-                }
-                if (m_playerInput.button_B)
-                {
-                    Debug.Log("a");
-                    if (m_ShotSoul)
-                    {
-                        Instantiate(m_Soul, transform.position, transform.rotation);
-                    }
-                    m_ShotSoul = false;
-                }
-
-                if (m_playerInput.button_X)
-                {
-                    m_playerAnimations.TackleAnimation();
                 }
 
                 if (m_playerInput.button_Y)
@@ -352,7 +317,6 @@ public class PlayerController : MonoBehaviour
                 }
                 if (m_playerInput.button_B)
                 {
-                    Debug.Log("a");
                     if (m_ShotSoul)
                     {
                         Instantiate(m_Soul, transform.position, transform.rotation);
@@ -362,7 +326,38 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_X)
                 {
+                    //this.gameObject.GetComponent<ZombieController>().AttackCoal1();
+                }
 
+                if (m_playerInput.button_Y)
+                {
+                    //m_playerAnimations.AtteckAnimation();
+                }
+                break;
+
+            case PlayerJob.PowerZombie:
+                if (m_playerInput.button_A && !m_jump)
+                {
+                    /*
+                    m_rigid2D.AddForce(Vector2.up * m_flap);
+                    m_playerAnimations.JumpAnimation();
+                    m_jump = true;
+                    */
+                }
+                if (m_playerInput.button_B)
+                {
+                    if (m_ShotSoul)
+                    {
+                        Instantiate(m_Soul, transform.position, transform.rotation);
+                    }
+                    m_ShotSoul = false;
+                }
+
+                if (m_playerInput.button_X)
+                {
+                    Debug.Log("tak");
+                    m_playerAnimations.TackleAnimation();
+                    this.gameObject.GetComponent<ZombieController>().AttackCoal1();
                 }
 
                 if (m_playerInput.button_Y)
