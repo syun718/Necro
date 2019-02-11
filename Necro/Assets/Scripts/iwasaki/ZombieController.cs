@@ -7,6 +7,7 @@ public class ZombieController : MonoBehaviour
     Rigidbody2D rb;
 
     PlayerAnimations m_playerAnimations;
+    AnimatorManager m_animatorManeger;
 
     public GameObject GeroZomie_L_Gero;
     public GameObject GeroZomie_R_Gero;
@@ -38,6 +39,7 @@ public class ZombieController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         m_playerAnimations = GetComponent<PlayerAnimations>();
+        m_animatorManeger = new AnimatorManager(GetComponentsInChildren<Animator>(true));
 
         LaterChance_count = 0;
         State = 0;
@@ -52,8 +54,8 @@ public class ZombieController : MonoBehaviour
         {
             if (State == 0)
             {
-                transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
-                m_playerAnimations.MoveAnimation(1.0f); m_playerAnimations.MoveAnimation(1.0f);
+                //transform.Translate(new Vector2((Parameter_Speed * 0.05f), rb.velocity.y)); //移動
+                //m_playerAnimations.MoveAnimation(1.0f); m_playerAnimations.MoveAnimation(1.0f);
             }
             if (LaterChance_count == 0)
             {
@@ -182,6 +184,9 @@ public class ZombieController : MonoBehaviour
                 if (LaterChance_count == 180)
                 {
                     Parameter_Speed = 0;
+                    Debug.Log("aruki");
+                    //m_playerAnimations.MoveAnimation(1.0f); m_playerAnimations.MoveAnimation(1.0f);
+                    m_animatorManeger.MoveSpeed = 0.5f;
                 }
                 else if (LaterChance_count == 1)
                 {
@@ -222,7 +227,17 @@ public class ZombieController : MonoBehaviour
                 if (LaterChance_count == 291)
                 {
                     rb.AddForce(Vector2.up * 400.0f);
-                }else if (LaterChance_count == 180)
+                    m_playerAnimations.FlyAnimation();
+                }
+                if (LaterChance_count == 271)
+                {
+                    m_playerAnimations.FlyAnimation();
+                }
+                if (LaterChance_count == 251)
+                {
+                    m_playerAnimations.FlyAnimation();
+                }
+                else if (LaterChance_count == 180)
                 {
                     rb.AddForce(Vector2.left * 250.0f);
                     rb.AddForce(Vector2.down * 100.0f);

@@ -24,7 +24,7 @@ public class GeroScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D hit)
     {
-        if (hit.gameObject.tag != TagName.zombie && hit.gameObject.tag != TagName.player)
+        if ((LorR == false && hit.gameObject.tag != TagName.zombie) || (LorR == true && hit.gameObject.tag != TagName.player))
         {
             Destroy(gameObject);
         }

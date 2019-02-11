@@ -15,13 +15,15 @@ public class Scene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        m_playerInput.EscapePlayerInput();
         ButtonClicked();
+        Debug.Log(m_playerInput.button_B);
     }
 
     public void ButtonClicked()
     {
         Debug.Log("aaa");
-        if (Input.GetKey("left"))
+        if (m_playerInput.button_B)
         {
             Debug.Log("aaa");
             SceneManager.LoadScene("Stage1");

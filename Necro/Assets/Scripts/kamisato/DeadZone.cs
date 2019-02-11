@@ -23,7 +23,7 @@ public class DeadZone : MonoBehaviour {
     {
         if(uiController.destroyCount == 3)
         {
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("Stage1");
         }
     }
 
@@ -32,7 +32,7 @@ public class DeadZone : MonoBehaviour {
         if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("Stage1");
         }
     }
 }

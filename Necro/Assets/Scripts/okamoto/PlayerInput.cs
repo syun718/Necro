@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour {
     public bool button_RB;
     [HideInInspector]
     public bool button_A;
-    [HideInInspector]
+    //[HideInInspector]
     public bool button_B;
     [HideInInspector]
     public bool button_X;

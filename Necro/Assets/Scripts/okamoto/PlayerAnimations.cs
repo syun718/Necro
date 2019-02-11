@@ -23,6 +23,7 @@ public class PlayerAnimations : MonoBehaviour {
     //走っている時のアニメーション
     public void MoveAnimation(float horizontal)
     {
+        Debug.Log(horizontal);
         float x = Input.GetAxisRaw("Horizontal");
         if (m_PlayerInput.Laxis_x != 0 || x != 0)
         {

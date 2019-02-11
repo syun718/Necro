@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.BirdZombie:
-                PlayerData.Instance.jobTime = 60f;
+                PlayerData.Instance.jobTime = 360f;
                 firstSpeed = PlayerData.Instance.crowSpeed;
                 m_Speed = firstSpeed;
                 tag = TagName.player;
@@ -157,25 +157,25 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerJob.GeroZomie:
-                PlayerMove();
+                ZombieMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
             case PlayerJob.PowerZombie:
-                PlayerMove();
+                ZombieMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
             case PlayerJob.Dogzombie:
-                PlayerMove();
+                ZombieMove();
                 ZombieButton();
                 ZombieTime();
                 break;
 
             case PlayerJob.BirdZombie:
-                PlayerMove();
+                ZombieMove();
                 ZombieButton();
                 ZombieTime();
                 break;
@@ -195,6 +195,21 @@ public class PlayerController : MonoBehaviour
             // 移動する向きを求める
             m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
             var direction = new Vector3(0, 0, x);
+            transform.localRotation = Quaternion.LookRotation(direction);
+        }
+        m_playerAnimations.MoveAnimation(horizontal);
+    }
+
+    void ZombieMove()
+    {
+        // 右・左
+        float x = Input.GetAxisRaw("Horizontal");
+        float horizontal = m_playerInput.Laxis_x;
+        if (Mathf.Abs(x) >= 0.7 || Mathf.Abs(horizontal) >= 0.7)
+        {
+            // 移動する向きを求める
+            m_rigid2D.velocity = new Vector2(x * m_Speed, m_rigid2D.velocity.y);
+            var direction = new Vector3(0, 0, -x);
             transform.localRotation = Quaternion.LookRotation(direction);
         }
         m_playerAnimations.MoveAnimation(horizontal);
@@ -385,6 +400,7 @@ public class PlayerController : MonoBehaviour
 
                 if (m_playerInput.button_X)
                 {
+                    m_rigid2D.AddForce(Vector2.up * 10f);
                     m_playerAnimations.FlyAnimation();
                 }
 
